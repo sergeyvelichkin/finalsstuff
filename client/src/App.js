@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Navbar} from './Components/Navbar';
+import { Navbar } from './Components/Navbar';
+import { JobDetails } from './Components/JobDetails';
+import { JobItem } from './Components/JobItem';
+import { Footer } from './Components/Footer';
+import { Carousel } from './Components/Carousel';
+import { JobList } from './Components/JobList';
 
 class App extends Component {
-  render() {
-    return (
+    constructor() {
+        super();
+        this.state = {
+            jobs: []
+        }
+    }
 
-      <div className="App">
-        <Navbar/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Test</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    render() {
+        return (
+
+            <div className="App">
+                <Navbar />
+                <main role="main">
+                    <Carousel />
+                    <div className="container marketing">
+                        {/* Three columns of text below the carousel */}
+                        <JobList />
+                    </div>
+                    {/* FOOTER */}
+                    <Footer />
+                </main>
+
+            </div>
+        );
+    }
 }
 
 export default App;
