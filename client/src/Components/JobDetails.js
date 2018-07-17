@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-export class JobDetails
- extends React.Component {
+export class JobDetails extends Component {
     render() {
         return (
             <div>
@@ -14,7 +13,7 @@ export class JobDetails
                         <p className="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
                     </div>
                     <div className="col-md-5">
-                        <img className="featurette-image img-fluid mx-auto" src="https://picsum.photos/500/?random" alt="Generic placeholder image" />
+                        <img className="featurette-image img-fluid mx-auto" src="https://picsum.photos/500/?random" alt="Generic placeholder" />
                     </div>
                 </div>
 

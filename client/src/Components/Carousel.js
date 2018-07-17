@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-export class Carousel extends React.Component {
+export class Carousel extends Component {
     render() {
         return (
             <div id="myCarousel" className="carousel slide" data-ride="carousel">
@@ -10,12 +10,12 @@ export class Carousel extends React.Component {
                         <img className="first-slide" src="https://picsum.photos/1400/500/?random" alt="First slide" />
                         <div className="container">
                             <div className="carousel-caption">
-                                <h1>Example headline.</h1>
-                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                <h1>Creation Station 2</h1>
+                                <p>A Freelancer's Emporium</p>
                                 <form action="#" method="GET">
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <input className="form-control keyword" type="text" placeholder="e.g. Mobile Sale" />
+                                            <input className="form-control keyword" type="text" placeholder="e.g. Arts & Crafts" />
                                         </div>
                                         <div className="col-md-4">
                                             <select className="form-control selecter" name="category" id="search-category">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 export class Navbar extends React.Component {
@@ -6,14 +7,14 @@ export class Navbar extends React.Component {
         return (
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                    <a className="navbar-brand" href="#">Creation Station 2</a>
+                    <Link className="navbar-brand" to='/'>Creation Station 2</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                                <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
