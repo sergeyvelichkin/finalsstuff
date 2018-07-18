@@ -12,7 +12,7 @@ export class JobList extends Component {
     }
 
     componentDidMount() {
-        // Make a request for a user with a given ID
+        // Get all jobs from database.
         axios.get('/api/jobs')
             .then(response => {
                 let data = response.data;
@@ -26,9 +26,7 @@ export class JobList extends Component {
     }
 
     render() {
-        console.log('state', this.state.jobs)
         return (
-
             <div className="row">
                 {this.state.jobs.map(job => (
                     <JobItem key={job.id} job={job} />
