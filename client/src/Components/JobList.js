@@ -17,20 +17,23 @@ export class JobList extends Component {
             .then(response => {
                 let data = response.data;
                 console.log('success', data);
-                this.setState({ jobs: data});
+                this.setState({ jobs: data });
             })
             .catch(function (error) {
                 console.log('error', error);
             });
-        
+
     }
 
     render() {
         return (
-            <div className="row">
-                {this.state.jobs.map(job => (
-                    <JobItem key={job.id} job={job} />
-                ))}
+            <div>
+                <div className="row">
+                    {this.state.jobs.map(job => (
+                        <JobItem key={job.id} job={job} />
+                    ))}
+                </div>
+                <hr className="featurette-divider" />
             </div>
         )
     }
