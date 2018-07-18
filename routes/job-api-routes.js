@@ -4,23 +4,21 @@ module.exports = function(app) {
   app.get("/api/jobs", function(req, res) {
     // 1. Add a join to include all of each Job's Posts
     db.Job.findAll({include: [db.User]}).then(function(data) {
-      let hbsObject = {
-        jobs: data
-      };
+      
       // res.render('index', hbsObject);
       res.json(data);
     });
   });
 
-  app.get("/api/jobs/:id",isLoggedIn, function(req, res) {
+  app.get("/api/jobs/:id", function(req, res) {
     // 2; Add a join to include all of the Job's Posts here
     db.Job.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbJob) {
+    }).then(function(data) {
       // console.log(dbJob)
-      res.render('jobinfo',{data:dbJob,user:req.user});
+      res.json(data);
     });
   });
 
