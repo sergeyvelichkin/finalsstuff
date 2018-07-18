@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { JobItem } from './JobItem';
+import axios from 'axios';
 
 
 export class JobList extends Component {
@@ -11,53 +12,26 @@ export class JobList extends Component {
     }
 
     componentWillMount() {
-        let items = [
-            {
-                title: "Test 1",
-                description: "Lorem Ipsum",
-                completed: true,
-                address: "6471 Xavier Ct",
-                cost: 30
-            },
-            {
-                title: "Test 2",
-                description: "Lorem Ipsum",
-                completed: true,
-                address: "6471 Xavier Ct",
-                cost: 30
-            },
-            {
-                title: "Test 3",
-                description: "Lorem Ipsum",
-                completed: true,
-                address: "6471 Xavier Ct",
-                cost: 30
-            },
-            {
-                title: "Test 4",
-                description: "Lorem Ipsum",
-                completed: true,
-                address: "6471 Xavier Ct",
-                cost: 30
-            },
-            {
-                title: "Test 5",
-                description: "Lorem Ipsum",
-                completed: true,
-                address: "6471 Xavier Ct",
-                cost: 30
-            },
-        ];
-        this.setState({jobs: items});
+        // Make a request for a user with a given ID
+        axios.get('/api/jobs')
+            .then(response => {
+                let data = response.data;
+                console.log('success', data);
+                this.setState({ jobs: data});
+            })
+            .catch(function (error) {
+                console.log('error', error);
+            });
+        
     }
 
     render() {
         console.log('state', this.state.jobs)
         return (
-            
+
             <div className="row">
                 {this.state.jobs.map(job => (
-                    <JobItem key={job.title} job={job}/>
+                    <JobItem key={job.id} job={job} />
                 ))}
             </div>
         )

@@ -22,7 +22,7 @@ export class Navbar extends React.Component {
                                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
                                 <ul className="dropdown-menu dropdown-menu-right mt-2">
                                     <li className="px-3 py-2">
-                                        <form className="form" role="form">
+                                        <form className="form">
                                             <div className="form-group">
                                                 <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" required="" />
                                             </div>
@@ -33,7 +33,7 @@ export class Navbar extends React.Component {
                                                 <button type="submit" className="btn btn-primary btn-block">Login</button>
                                             </div>
                                             <div className="form-group text-center">
-                                                <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                                <small><Link to='#' data-toggle="modal" data-target="#modalPassword">Forgot password?</Link></small>
                                             </div>
                                         </form>
                                     </li>
@@ -43,7 +43,7 @@ export class Navbar extends React.Component {
                                 <button type="button" id="dropdownMenu2" data-toggle="dropdown" className="btn btn-primary dropdown-toggle">Sign up <span className="caret"></span></button>
                                 <ul className="dropdown-menu dropdown-menu-right mt-2">
                                     <li className="px-3 py-2">
-                                        <form className="form" role="form">
+                                        <form className="form">
                                             <div className="form-group">
                                                 <input id="emailInputSignup" placeholder="Email" className="form-control form-control-sm" type="text" required="" />
                                             </div>

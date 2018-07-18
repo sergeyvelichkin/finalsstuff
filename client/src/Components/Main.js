@@ -14,7 +14,7 @@ export class Main extends Component {
                     {/* Three columns of text below the carousel */}
                     <Switch>
                         <Route exact path="/" component={JobList} />
-                        <Route path="/jobs/:title" component={JobDetails} />
+                        <Route path="/jobs/:id" component={JobDetails} />
                     </Switch>
                 </div>
                 {/* FOOTER */}
