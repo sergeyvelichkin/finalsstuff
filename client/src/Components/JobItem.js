@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 
 export class JobItem extends Component {
-    
     render() {
+        
         const {id, title, description, cost} = this.props.job
+
         return (
             <div className="col-lg-4">
                 <img className="rounded-circle" src={`https://picsum.photos/300/?image=${id + 100}`} alt="Generic placeholder" width="140" height="140" />
