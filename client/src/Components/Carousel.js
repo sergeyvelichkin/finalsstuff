@@ -7,7 +7,7 @@ export class Carousel extends Component {
             <div id="myCarousel" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img className="first-slide" src="https://picsum.photos/1400/500/?random" alt="First slide" />
+                        <img className="first-slide" src="https://picsum.photos/1400/500/?image=859" alt="First slide" />
                         <div className="container">
                             <div className="carousel-caption">
                                 <h1>Creation Station 2</h1>

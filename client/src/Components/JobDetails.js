@@ -35,7 +35,7 @@ export class JobDetails extends Component {
 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading">{title}. <span className="text-muted">It'll blow your mind.</span></h2>
+                        <h2 className="featurette-heading">{title}. <span className="text-muted">{description}</span></h2>
                         <p className="lead">${cost}</p>
                         <p className="lead">{address}</p>
                     </div>
