@@ -1,12 +1,7 @@
 {
   "name": "the_mern_client",
   "version": "0.1.0",
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:8080",
-      "secure": false
-    }
-  },
+  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
     "react": "^16.4.1",

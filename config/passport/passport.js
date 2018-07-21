@@ -1,9 +1,13 @@
 const bCrypt = require('bcrypt-nodejs');
 const nodemailer = require('nodemailer')
-module.exports = (passport, user) => {
-    let User = user;
-    let LocalStrategy = require('passport-local').Strategy;
-    //serialize
+const config = require('./config');
+const jwt = require('jsonwebtoken');
+
+// const User  = require('../../models/user.js').User;
+let LocalStrategy = require('passport-local').Strategy;
+
+module.exports = (passport,user) => {
+    let User=user;
     passport.serializeUser(function (user, done) {
 
         done(null, user.id);
@@ -85,8 +89,8 @@ module.exports = (passport, user) => {
                         }
 
                         if (newUser) {
-                            let fullName = data.first_name + " "+ data.last_name;
-                            welcomeEmail(data.email, fullName)
+                            // let fullName = data.first_name + " "+ data.last_name;
+                            // welcomeEmail(data.email, fullName)
                             return done(null, newUser);
 
                         }
@@ -100,6 +104,8 @@ module.exports = (passport, user) => {
         }
 
     ));
+
+
     //LOCAL SIGNIN
     passport.use('local-signin', new LocalStrategy(
 
@@ -117,8 +123,6 @@ module.exports = (passport, user) => {
 
 
         function (req, email, password, done) {
-
-            let User = user;
 
             let isValidPassword = function (userpass, password) {
 
@@ -150,7 +154,15 @@ module.exports = (passport, user) => {
 
 
                 let userinfo = user.get();
-                return done(null, userinfo);
+                const payload = {
+                    sub: user.id
+                  };
+            
+                  // create a token string
+                  const token = jwt.sign(payload, config.jwtSecret);
+            
+
+                return done(null,token, userinfo);
 
 
             }).catch(function (err) {

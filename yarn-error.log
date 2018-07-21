@@ -1,0 +1,66 @@
+Arguments: 
+  /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/yarn start
+
+PATH: 
+  /Users/a1/anaconda/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  9.10.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  TypeError: "file" argument must be a non-empty string
+      at normalizeSpawnArguments (child_process.js:381:11)
+      at Object.exports.spawn (child_process.js:494:38)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:30244:24
+      at new Promise (<anonymous>)
+      at new F (/usr/local/lib/node_modules/yarn/lib/cli.js:23451:28)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:30243:12
+      at run (/usr/local/lib/node_modules/yarn/lib/cli.js:41716:7)
+      at BlockingQueue.maybePushConcurrencyQueue (/usr/local/lib/node_modules/yarn/lib/cli.js:41731:7)
+      at BlockingQueue.shift (/usr/local/lib/node_modules/yarn/lib/cli.js:41726:10)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:41670:15
+
+npm manifest: 
+  {
+    "name": "the-mern",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "",
+      "dev": "concurrently \"node app.js\" \"cd client && yarn start\""
+    },
+    "dependencies": {
+      "concurrently": "^3.6.0",
+      "cookie-parser": "~1.4.3",
+      "debug": "~2.6.9",
+      "express": "^4.16.3",
+      "http-errors": "~1.6.2",
+      "jade": "~1.11.0",
+      "morgan": "~1.9.0",
+      "bcrypt-nodejs": "0.0.3",
+      "body-parser": "^1.18.3",
+      "connect-flash": "^0.1.1",
+      "dotenv": "^5.0.1",
+      "express-messages": "^1.0.1",
+      "express-session": "^1.15.6",
+      "mysql": "^2.15.0",
+      "mysql2": "^1.5.3",
+      "nightmare": "^3.0.1",
+      "nodemailer": "4.6.5",
+      "passport": "^0.4.0",
+      "passport-local": "^1.0.0",
+      "sequelize": "^4.37.9"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

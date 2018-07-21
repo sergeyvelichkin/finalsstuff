@@ -1,8 +1,108 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
+import Auth from './Auth';
+import  { Redirect } from 'react-router-dom'
 
 export class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            user:[]
+        };
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
+        this.handleSignOut = this.handleSignOut.bind(this);
+      }
+    
+      handleChange (evt) {
+        // check it out: we get the evt.target.name (which will be either "email" or "password")
+        // and use it to target the key on our `state` object with the same name, using bracket syntax
+        this.setState({ [evt.target.name]: evt.target.value });
+
+
+      }
+      
+    
+      handleSubmit(event) {
+        
+        event.preventDefault();
+        console.log(this.state.email);
+        console.log(this.state.password);
+
+        axios.post('/signin', {
+            email:this.state.email,
+            password:this.state.password
+        })
+            .then(response => {
+                console.log(response)
+                if (response.data){
+                    console.log('sucessfull sign in');
+
+                    Auth.authenticateUser(response.token);
+                    this.props.toggleAuthenticateStatus();
+                    console.log(response.data.user)
+                    this.props.toggleUser(response.data.user)
+
+                    this.setState({user:response.data.user});
+                    console.log(this.state.user);
+                }else {
+                    console.log("Sign in error");
+                }
+            }).catch(error => {
+                console.log('Sign in server error');
+                console.log(error);
+            })
+      }
+
+      handleSignOut(event){
+
+
+          event.preventDefault();
+          console.log("Submitted");
+          Auth.deauthenticateUser();
+
+          this.props.toggleAuthenticateStatus();
+          
+      }
+
+      handleSignup(event) {
+        
+        event.preventDefault();
+
+        console.log(this.state.email);
+        console.log(this.state.password);
+
+        axios.post('/signup', {
+            email:this.state.email,
+            password:this.state.password
+        })
+            .then(response => {
+                console.log(response)
+                if (response.data){
+                    console.log('sucessfull sign up');
+
+                    Auth.authenticateUser(response.token);
+
+                    this.props.toggleAuthenticateStatus(response.data.user);
+
+                    this.setState({user:response.data.user});
+
+                }else {
+                    console.log("Sign in error");
+                }
+            }).catch(error => {
+                console.log('Sign in server error');
+                console.log(error);
+            })
+      }
+
+
+
     render() {
         return (
             <header>
@@ -17,20 +117,30 @@ export class Navbar extends React.Component {
                                 <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
                             </li>
                         </ul>
+
+                        {this.props.isAuth ? (
+                            // <div className="form-group">
+                            //     <a href="/logout" className="btn btn-info" role="button">LogOut</a>
+                            // </div>
+                            <div className="form-group">
+                                 <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
+                            </div>
+                        ) : (
+
                         <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
                             <li className="dropdown order-0">
                                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
                                 <ul className="dropdown-menu dropdown-menu-right mt-2">
                                     <li className="px-3 py-2">
-                                        <form className="form">
+                                        <form className="form" onSubmit={this.handleSubmit}>
                                             <div className="form-group">
-                                                <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" required="" />
+                                                <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
                                             </div>
                                             <div className="form-group">
-                                                <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" required="" />
+                                                <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
                                             </div>
                                             <div className="form-group">
-                                                <button type="submit" className="btn btn-primary btn-block">Login</button>
+                                                <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
                                             </div>
                                             <div className="form-group text-center">
                                                 <small><Link to='#' data-toggle="modal" data-target="#modalPassword">Forgot password?</Link></small>
@@ -43,15 +153,15 @@ export class Navbar extends React.Component {
                                 <button type="button" id="dropdownMenu2" data-toggle="dropdown" className="btn btn-primary dropdown-toggle">Sign up <span className="caret"></span></button>
                                 <ul className="dropdown-menu dropdown-menu-right mt-2">
                                     <li className="px-3 py-2">
-                                        <form className="form">
+                                        <form className="form" onSubmit={this.handleSignup}>
                                             <div className="form-group">
-                                                <input id="emailInputSignup" placeholder="Email" className="form-control form-control-sm" type="text" required="" />
+                                                <input id="emailInputSignup" placeholder="Email" className="form-control form-control-sm" type="text" name="email" value={this.state.email} onChange={this.handleChange} required="" />
                                             </div>
                                             <div className="form-group">
                                                 <input id="passwordInputSignup" placeholder="Password" className="form-control form-control-sm" type="text" required="" />
                                             </div>
                                             <div className="form-group">
-                                                <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" required="" />
+                                                <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
                                             </div>
                                             <div className="form-group">
                                                 <button type="submit" className="btn btn-primary btn-block">Sign up</button>
@@ -61,6 +171,7 @@ export class Navbar extends React.Component {
                                 </ul>
                             </li>
                         </ul>
+                        )}
                     </div>
                 </nav>
             </header>

@@ -4,32 +4,41 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
+var cookieParser = require('cookie-parser');
+var flash    = require('connect-flash');
+// const path = require('path')
 
-app.use(express.static('public'));
+
+
+const db = require("./models");
+
+
+
+require('./config/passport/passport.js')(passport,db.User);
+
+
+app.use(express.static('public'))
+app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
 app.use(session({ secret: 'trevlazyasshole', resave: true, saveUninitialized: true }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash()); 
+
 
 // Requiring our models for syncing
-const db = require("./models");
-
 
 require('./routes/auth-routes.js')(app, passport);
-require('./config/passport/passport.js')(passport, db.User);
 
-// Routes
-// =============================================================
+
+
+// // Routes
+// // =============================================================
 require("./routes/user-api-routes.js")(app);
 require("./routes/job-api-routes.js")(app);
-require("./routes/contact-routes.js")(app);
-require("./routes/welcome-routes.js")(app);
-
-app.get('*')
 
 
 db.sequelize.sync().then(function () {

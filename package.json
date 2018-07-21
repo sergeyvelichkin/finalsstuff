@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "",
-    "dev": "concurrently \"node app.js\" \"cd client && yarn start\""
+    "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\""
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -20,6 +20,7 @@
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
