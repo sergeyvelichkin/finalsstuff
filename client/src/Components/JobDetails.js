@@ -13,9 +13,9 @@ export class JobDetails extends Component {
     componentDidMount(){
 
         const { id } = this.props.match.params
-        console.log('This is the id', id)
+        console.log('This is the job id', id)
 
-        // Make a request for a user with a given ID
+        // Make a request for a job with a given ID
         axios.get(`/api/jobs/${id}`)
             .then(response => {
                 let data = response.data;
@@ -28,14 +28,16 @@ export class JobDetails extends Component {
     };
 
     render() {
+        
         const {id, title, description, address, cost} = this.state.job
+
         return (
             <div>
                 <hr className="featurette-divider" />
 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading">{title}. <span className="text-muted">{description}</span></h2>
+                        <h2 className="featurette-heading">{title}. <span className="text-muted">{description}.</span></h2>
                         <p className="lead">${cost}</p>
                         <p className="lead">{address}</p>
                     </div>
