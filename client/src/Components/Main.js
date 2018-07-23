@@ -60,7 +60,7 @@ export class Main extends Component {
           user:[]
 
         }
-        // this.toggleUser = this.toggleUser.bind(this);
+        // this.toggleAuthenticateStatus = this.toggleAuthenticateStatus.bind(this);
       };
     
       componentDidMount() {
@@ -91,7 +91,7 @@ export class Main extends Component {
     render() {
         return (
             <main role="main">
-                <Navbar isAuth={this.state.authenticated} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} toggleUser={this.toggleUser}  />
+                <Navbar isAuth={this.state.authenticated} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} toggleUser={this.toggleUser} user={this.state.user}  />
                 <Route exact path="/" component={Carousel} />
                 {/* <Route exact path="/logout" component={LogoutFunction} /> */}
                 <div className="container marketing">
