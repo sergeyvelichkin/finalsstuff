@@ -26,6 +26,14 @@ export class Navbar extends React.Component {
 
 
       }
+
+      componentWillUnmount(){
+          localStorage.setItem("state", this.state);
+      }
+
+      componentDidMount(){
+          this.setState(localStorage.getItem("state"));
+      }
       
     
       handleSubmit(event) {
@@ -45,7 +53,7 @@ export class Navbar extends React.Component {
                 if (response.data.user.message){
                     this.setState({errors:response.data.user.message});
                 }else {
-                    Auth.authenticateUser(response.token);
+                    Auth.authenticateUser(response.data.token);
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
@@ -82,19 +90,19 @@ export class Navbar extends React.Component {
             .then(response => {
                 console.log(response)
                 if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+
+                }else {
                     console.log('sucessfull sign up');
 
-                    Auth.authenticateUser(response.token);
+                    Auth.authenticateUser(response.data.token);
 
                     this.props.toggleAuthenticateStatus(response.data.user);
 
                     this.setState({user:response.data.user});
-
-                }else {
-                    console.log("Sign in error");
                 }
             }).catch(error => {
-                console.log('Sign in server error');
+                console.log('Sign up server error');
                 console.log(error);
             })
       }
@@ -162,6 +170,7 @@ export class Navbar extends React.Component {
                                             <div className="form-group">
                                                 <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
                                             </div>
+                                            {this.state.errors ? (<p> {this.state.errors} </p>): (<p/>)}
                                             <div className="form-group">
                                                 <button type="submit" className="btn btn-primary btn-block">Sign up</button>
                                             </div>
