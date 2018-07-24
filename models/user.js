@@ -34,23 +34,25 @@ module.exports = function (sequelize, DataTypes) {
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: {
           args: [3],
           msg: "First name must have at least 3 characters in length"
         }
-      }
+      },
+        defaultValue: "Jacobo"
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: {
           args: [3],
           msg: "Last name must have at least 3 characters in length"
         }
-      }
+      },
+      defaultValue: "Jacobo"
     },
     avatar: {
       type: DataTypes.STRING,
