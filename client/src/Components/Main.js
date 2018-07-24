@@ -3,6 +3,8 @@ import { Footer } from './Footer';
 import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
+
+import { AddJob } from './AddJob';
 import { Navbar } from './Navbar';
 import Auth from './Auth';
 import LogoutFunction from './LogoutFunction';
@@ -97,7 +99,9 @@ export class Main extends Component {
                 <div className="container marketing">
                     {/* Three columns of text below the carousel */}
                     <Switch>
-                        <PropsRoute exact path="/" component={JobList} />
+
+                        <Route exact path="/" component={JobList} />
+                        <Route path="/dashboard/" component={AddJob} />
                         <Route path="/jobs/:id" component={JobDetails} />
                     </Switch>
                 </div>
