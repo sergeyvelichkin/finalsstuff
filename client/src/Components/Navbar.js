@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
-import  { Redirect } from 'react-router-dom'
 
 export class Navbar extends React.Component {
     constructor(props) {
@@ -10,7 +9,8 @@ export class Navbar extends React.Component {
         this.state = {
             email: '',
             password: '',
-            user:[]
+            user:[],
+            errors:[]
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -26,6 +26,14 @@ export class Navbar extends React.Component {
 
 
       }
+
+      componentWillUnmount(){
+          localStorage.setItem("state", this.state);
+      }
+
+      componentDidMount(){
+          this.setState(localStorage.getItem("state"));
+      }
       
     
       handleSubmit(event) {
@@ -39,19 +47,17 @@ export class Navbar extends React.Component {
             password:this.state.password
         })
             .then(response => {
-                console.log(response)
-                if (response.data){
-                    console.log('sucessfull sign in');
 
-                    Auth.authenticateUser(response.token);
+                console.log("Response: ");
+                console.log(response)
+                if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+                }else {
+                    Auth.authenticateUser(response.data.token);
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
-
-                    this.setState({user:response.data.user});
-                    console.log(this.state.user);
-                }else {
-                    console.log("Sign in error");
+                    this.setState({user:response.data.user})
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -83,20 +89,20 @@ export class Navbar extends React.Component {
         })
             .then(response => {
                 console.log(response)
-                if (response.data){
+                if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+
+                }else {
                     console.log('sucessfull sign up');
 
-                    Auth.authenticateUser(response.token);
+                    Auth.authenticateUser(response.data.token);
 
                     this.props.toggleAuthenticateStatus(response.data.user);
 
                     this.setState({user:response.data.user});
-
-                }else {
-                    console.log("Sign in error");
                 }
             }).catch(error => {
-                console.log('Sign in server error');
+                console.log('Sign up server error');
                 console.log(error);
             })
       }
@@ -119,11 +125,11 @@ export class Navbar extends React.Component {
                         </ul>
 
                         {this.props.isAuth ? (
-                            // <div className="form-group">
-                            //     <a href="/logout" className="btn btn-info" role="button">LogOut</a>
-                            // </div>
+                            <div>
+                            <p>Hello {this.state.user.first_name} {this.state.user.last_name}</p>
                             <div className="form-group">
                                  <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
+                            </div>
                             </div>
                         ) : (
 
@@ -142,6 +148,7 @@ export class Navbar extends React.Component {
                                             <div className="form-group">
                                                 <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
                                             </div>
+                                            {this.state.errors ? (<p> {this.state.errors} </p>): (<p/>)}
                                             <div className="form-group text-center">
                                                 <small><Link to='#' data-toggle="modal" data-target="#modalPassword">Forgot password?</Link></small>
                                             </div>
@@ -163,6 +170,7 @@ export class Navbar extends React.Component {
                                             <div className="form-group">
                                                 <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
                                             </div>
+                                            {this.state.errors ? (<p> {this.state.errors} </p>): (<p/>)}
                                             <div className="form-group">
                                                 <button type="submit" className="btn btn-primary btn-block">Sign up</button>
                                             </div>
@@ -173,6 +181,7 @@ export class Navbar extends React.Component {
                         </ul>
                         )}
                     </div>
+                    
                 </nav>
             </header>
         )
