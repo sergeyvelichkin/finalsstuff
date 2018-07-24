@@ -4,6 +4,7 @@ import { Footer } from './Footer';
 import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
+import { AddJob } from './AddJob';
 
 export class Main extends Component {
     render() {
@@ -14,6 +15,7 @@ export class Main extends Component {
                     {/* Three columns of text below the carousel */}
                     <Switch>
                         <Route exact path="/" component={JobList} />
+                        <Route path="/dashboard/" component={AddJob} />
                         <Route path="/jobs/:id" component={JobDetails} />
                     </Switch>
                 </div>
