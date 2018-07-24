@@ -1,17 +1,15 @@
 {
   "name": "the_mern_client",
   "version": "0.1.0",
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:8080",
-      "secure": false
-    }
-  },
+  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
+    "nodemon": "^1.18.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "yarn": "^1.7.0"
   },
   "scripts": {
     "start": "react-scripts start",

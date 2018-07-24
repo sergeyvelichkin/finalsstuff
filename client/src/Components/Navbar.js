@@ -1,86 +1,180 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Auth from './Auth';
 
 export class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            user:[],
+            errors:[]
+        };
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
+        this.handleSignOut = this.handleSignOut.bind(this);
+      }
+    
+      handleChange (evt) {
+        // check it out: we get the evt.target.name (which will be either "email" or "password")
+        // and use it to target the key on our `state` object with the same name, using bracket syntax
+        this.setState({ [evt.target.name]: evt.target.value });
+
+
+      }
+      
+    
+      handleSubmit(event) {
+        
+        event.preventDefault();
+        console.log(this.state.email);
+        console.log(this.state.password);
+
+        axios.post('/signin', {
+            email:this.state.email,
+            password:this.state.password
+        })
+            .then(response => {
+
+                console.log("Response: ");
+                console.log(response)
+                if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+                }else {
+                    Auth.authenticateUser(response.token);
+                    this.props.toggleAuthenticateStatus();
+                    console.log(response.data.user)
+                    this.props.toggleUser(response.data.user)
+                    this.setState({user:response.data.user})
+                }
+            }).catch(error => {
+                console.log('Sign in server error');
+                console.log(error);
+            })
+      }
+
+      handleSignOut(event){
+
+
+          event.preventDefault();
+          console.log("Submitted");
+          Auth.deauthenticateUser();
+
+          this.props.toggleAuthenticateStatus();
+          
+      }
+
+      handleSignup(event) {
+        
+        event.preventDefault();
+
+        console.log(this.state.email);
+        console.log(this.state.password);
+
+        axios.post('/signup', {
+            email:this.state.email,
+            password:this.state.password
+        })
+            .then(response => {
+                console.log(response)
+                if (response.data.user.message){
+                    console.log('sucessfull sign up');
+
+                    Auth.authenticateUser(response.token);
+
+                    this.props.toggleAuthenticateStatus(response.data.user);
+
+                    this.setState({user:response.data.user});
+
+                }else {
+                    console.log("Sign in error");
+                }
+            }).catch(error => {
+                console.log('Sign in server error');
+                console.log(error);
+            })
+      }
+
+
+
     render() {
         return (
-            <div>
-                <div className="navbar navbar-default navbar-inverse" role="navigation">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="/bs-example-navbar-collapse-1">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            
-                        </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul className="nav navbar-nav">
-                                <li className="active"><a href={null}>Link</a></li>
-                                <li><a href={null}>Link</a></li>
-                                <li className="dropdown">
-                                    <a href={null} className="dropdown-toggle" data-toggle="dropdown">Dropdown <span className="caret"></span></a>
-                                    <ul className="dropdown-menu" role="menu">
-                                        <li><a href={null}>Action</a></li>
-                                        <li><a href={null}>Another action</a></li>
-                                        <li><a href={null}>Something else here</a></li>
-                                        <li className="divider"></li>
-                                        <li><a href={null}>Separated link</a></li>
-                                        <li className="divider"></li>
-                                        <li><a href={null}>One more separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div className="text-center"><a className="navbar-brand" href={null}>Task Me</a></div>
-                            <a className="nav navbar-text text-center" href={null}>Task Me</a>
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><p className="navbar-text">Already have an account?</p></li>
-                                <li className="dropdown">
-                                    <a href={null} className="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span className="caret"></span></a>
-                                    <ul id="login-dp" className="dropdown-menu">
-                                        <li>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    Login via
-								<div className="social-buttons">
-                                                        <a href={null} className="btn btn-fb"><i className="fa fa-facebook"></i> Facebook</a>
-                                                        <a href={null} className="btn btn-tw"><i className="fa fa-twitter"></i> Twitter</a>
-                                                    </div>
-                                                    or
-								 <form className="form" role="form" method="post" action="login" id="login-nav">
-                                                        <div className="form-group">
-                                                            <label className="sr-only">Email address</label>
-                                                            <input type="email" className="form-control" id="exampleInputEmail2" placeholder="Email address" required />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label className="sr-only">Password</label>
-                                                            <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" required />
-                                                            <div className="help-block text-right"><a href={null}>Forget the password ?</a></div>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <button type="submit" className="btn btn-primary btn-block">Sign in</button>
-                                                        </div>
-                                                        <div className="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" /> keep me logged-in
-											 </label>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div className="bottom text-center">
-                                                    New here ? <a href={null}><b>Join Us</b></a>
-                                                </div>
+            <header>
+                <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                    <Link className="navbar-brand" to='/'>Creation Station 2</Link>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarCollapse">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item active">
+                                <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
+                            </li>
+                        </ul>
+
+                        {this.props.isAuth ? (
+                            <div>
+                            <p>Hello {this.state.user.first_name} {this.state.user.last_name}</p>
+                            <div className="form-group">
+                                 <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
+                            </div>
+                            </div>
+                        ) : (
+
+                        <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
+                            <li className="dropdown order-0">
+                                <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
+                                <ul className="dropdown-menu dropdown-menu-right mt-2">
+                                    <li className="px-3 py-2">
+                                        <form className="form" onSubmit={this.handleSubmit}>
+                                            <div className="form-group">
+                                                <input id="emailInput" placeholder="Email" className="form-control form-control-sm" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
                                             </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                                            <div className="form-group">
+                                                <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
+                                            </div>
+                                            <div className="form-group">
+                                                <button type="submit" value="Submit" className="btn btn-primary btn-block">Login</button>
+                                            </div>
+                                            {this.state.errors ? (<p> {this.state.errors} </p>): (<p/>)}
+                                            <div className="form-group text-center">
+                                                <small><Link to='#' data-toggle="modal" data-target="#modalPassword">Forgot password?</Link></small>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li className="dropdown order-1 ml-1">
+                                <button type="button" id="dropdownMenu2" data-toggle="dropdown" className="btn btn-primary dropdown-toggle">Sign up <span className="caret"></span></button>
+                                <ul className="dropdown-menu dropdown-menu-right mt-2">
+                                    <li className="px-3 py-2">
+                                        <form className="form" onSubmit={this.handleSignup}>
+                                            <div className="form-group">
+                                                <input id="emailInputSignup" placeholder="Email" className="form-control form-control-sm" type="text" name="email" value={this.state.email} onChange={this.handleChange} required="" />
+                                            </div>
+                                            <div className="form-group">
+                                                <input id="passwordInputSignup" placeholder="Password" className="form-control form-control-sm" type="text" required="" />
+                                            </div>
+                                            <div className="form-group">
+                                                <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
+                                            </div>
+                                            <div className="form-group">
+                                                <button type="submit" className="btn btn-primary btn-block">Sign up</button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        )}
                     </div>
-                </div>
-            </div>
+                    
+                </nav>
+            </header>
         )
     }
 }
