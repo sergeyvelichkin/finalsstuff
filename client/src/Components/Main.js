@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
-
-import { AddJob } from './AddJob';
-import { Navbar } from './Navbar';
+import { Dashboard } from './Dashboard';
+import { Signup } from './Signup';
 import Auth from './Auth';
 
 
@@ -13,7 +13,6 @@ import {
     Route,
     Switch
   } from 'react-router-dom';
-
 
 export class Main extends Component {
 
@@ -54,7 +53,12 @@ export class Main extends Component {
     render() {
         return (
             <main role="main">
-                <Navbar isAuth={this.state.authenticated} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} toggleUser={this.toggleUser} user={this.state.user}  />
+                <Navbar 
+                  isAuth={this.state.authenticated} 
+                  toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} 
+                  toggleUser={this.toggleUser} 
+                  user={this.state.user}  
+                />
                 <Route exact path="/" component={Carousel} />
                 {/* <Route exact path="/logout" component={LogoutFunction} /> */}
                 <div className="container marketing">
@@ -62,7 +66,8 @@ export class Main extends Component {
                     <Switch>
 
                         <Route exact path="/" component={JobList} />
-                        <Route path="/dashboard/" component={AddJob} />
+                        <Route path="/signup/" component={Signup} />
+                        <Route path="/dashboard/" component={Dashboard} />
                         <Route path="/jobs/:id" component={JobDetails} />
                     </Switch>
                 </div>
