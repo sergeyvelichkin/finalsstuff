@@ -94,7 +94,9 @@ module.exports = (passport,user) => {
 
                             let sendData = {
                                 first_name:userinfo.first_name,
-                                last_name:userinfo.last_name
+                                last_name:userinfo.last_name,
+                                id:userinfo.id
+
                             }
                             const payload = {
                                 sub: newUser.id
@@ -174,7 +176,8 @@ module.exports = (passport,user) => {
 
                 let sendData = {
                     first_name:userinfo.first_name,
-                    last_name:userinfo.last_name
+                    last_name:userinfo.last_name,
+                    id:userinfo.id
                 }
 
                 const payload = {

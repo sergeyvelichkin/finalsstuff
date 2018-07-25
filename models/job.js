@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
-      address: {
+      city: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -35,6 +35,27 @@ module.exports = function(sequelize, DataTypes) {
           }
         }
       },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [1],
+            msg: "Address must have at least 1 characters in length"
+          }
+        }
+      },
+      zip: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [3],
+            msg: "Address must have at least 3 characters in length"
+          }
+        }
+      },
+    
       cost: {
         type: DataTypes.DECIMAL(10, 2) ,
         allowNull: false,
@@ -44,6 +65,7 @@ module.exports = function(sequelize, DataTypes) {
           }
         }
       }
+
     });
 
     Job.associate = function(models) {
