@@ -24,12 +24,19 @@ export class Navbar extends React.Component {
         // and use it to target the key on our `state` object with the same name, using bracket syntax
         this.setState({ [evt.target.name]: evt.target.value });
 
+      }
 
-    }
+      componentWillUnmount(){
+          localStorage.setItem("state", this.state);
+      }
 
-
-    handleSubmit(event) {
-
+      componentDidMount(){
+          this.setState(localStorage.getItem("state"));
+      }
+      
+    
+      handleSubmit(event) {
+        
         event.preventDefault();
         console.log(this.state.email);
         console.log(this.state.password);
@@ -42,10 +49,11 @@ export class Navbar extends React.Component {
 
                 console.log("Response: ");
                 console.log(response)
-                if (response.data.user.message) {
-                    this.setState({ errors: response.data.user.message });
-                } else {
-                    Auth.authenticateUser(response.token);
+          
+                if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+                }else {
+                    Auth.authenticateUser(response.data.token);
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
@@ -81,20 +89,24 @@ export class Navbar extends React.Component {
         })
             .then(response => {
                 console.log(response)
-                if (response.data.user.message) {
+
+                if (response.data.user.message){
+                    this.setState({errors:response.data.user.message});
+
+                }else {
+
                     console.log('sucessfull sign up');
 
-                    Auth.authenticateUser(response.token);
+                    Auth.authenticateUser(response.data.token);
 
                     this.props.toggleAuthenticateStatus(response.data.user);
 
-                    this.setState({ user: response.data.user });
 
-                } else {
-                    console.log("Sign in error");
+                    this.setState({user:response.data.user});
+
                 }
             }).catch(error => {
-                console.log('Sign in server error');
+                console.log('Sign up server error');
                 console.log(error);
             })
     }
@@ -155,6 +167,7 @@ export class Navbar extends React.Component {
                                             </li>
                                         </ul>
                                     </li>
+
                                     {/*<li className="dropdown ml-1">
                                         <button type="button" id="dropdownMenu2" data-toggle="dropdown" className="btn btn-primary dropdown-toggle">Sign up <span className="caret"></span></button>
                                         <ul className="dropdown-menu dropdown-menu-right mt-2">
@@ -178,6 +191,7 @@ export class Navbar extends React.Component {
                                     </li>*/}
                                     <li className="nav-item ml-1">
                                         <Link className="btn btn-primary" to='/signup'>Sign Up</Link>
+
                                     </li>
                                 </ul>
                             )}

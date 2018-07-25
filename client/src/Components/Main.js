@@ -7,52 +7,13 @@ import { JobDetails } from './JobDetails';
 import { Dashboard } from './Dashboard';
 import { Signup } from './Signup';
 import Auth from './Auth';
-import LogoutFunction from './LogoutFunction';
 
 
 import {
-    BrowserRouter as Router,
     Route,
-    Link,
     Redirect,
-    withRouter,
     Switch
-  } from 'react-router-dom'
-import { userInfo } from 'os';
-
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      Auth.isUserAuthenticated() ? (
-        <Component {...props} {...rest} />
-      ) : (
-        <Redirect to={{
-          pathname: '/',
-          state: { from: props.location }
-        }}/>
-      )
-    )}/>
-  )
-  
-  const LoggedOutRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      Auth.isUserAuthenticated() ? (
-        <Redirect to={{
-          pathname: '/',
-          state: { from: props.location }
-        }}/>
-      ) : (
-        <Component {...props} {...rest} />
-      )
-    )}/>
-  )
-  
-  const PropsRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      <Component {...props} {...rest} />
-    )}/>
-  )
+  } from 'react-router-dom';
 
 export class Main extends Component {
 
@@ -63,7 +24,6 @@ export class Main extends Component {
           user:[]
 
         }
-        // this.toggleAuthenticateStatus = this.toggleAuthenticateStatus.bind(this);
       };
     
       componentDidMount() {
