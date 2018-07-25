@@ -11,7 +11,6 @@ import Auth from './Auth';
 
 import {
     Route,
-    Redirect,
     Switch
   } from 'react-router-dom';
 

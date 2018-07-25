@@ -20,17 +20,7 @@ module.exports = function(app) {
     
   });
 
-  // app.get("/api/jobs/:id", function(req, res) {
-  //   // 2; Add a join to include all of the Job's Posts here
-  //   db.Job.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then(function(data) {
-  //     // console.log(dbJob)
-  //     res.json(data);
-  //   });
-  // });
+  
 
   app.post("/api/jobs", function(req, res) {
     db.Job.create(req.body).then(function(dbJob) {
