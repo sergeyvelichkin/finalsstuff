@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
 
+
 export class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -27,14 +28,13 @@ export class Navbar extends React.Component {
 
       }
 
-      componentWillUnmount(){
-          localStorage.setItem("state", this.state);
+      componentWillMount() {
+        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+        console.log(rehydrate)
+        this.setState({user:rehydrate})
       }
 
-      componentDidMount(){
-          this.setState(localStorage.getItem("state"));
-      }
-      
+
     
       handleSubmit(event) {
         
@@ -57,7 +57,8 @@ export class Navbar extends React.Component {
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
-                    this.setState({user:response.data.user})
+                    this.setState({user:response.data.user});
+                    localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -125,11 +126,11 @@ export class Navbar extends React.Component {
                         </ul>
 
                         {this.props.isAuth ? (
-                            <div>
-                            <p>Hello {this.state.user.first_name} {this.state.user.last_name}</p>
-                            <div className="form-group">
-                                 <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
-                            </div>
+                            <div className="nav navbar-nav flex-row justify-content-between ml-auto">
+                                    <li className="order-0" style={{margin: "10px"}} >Hello {this.state.user.first_name} {this.state.user.last_name}</li>
+                                    <li className="order-1">
+                                        <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
+                                </li>
                             </div>
                         ) : (
 

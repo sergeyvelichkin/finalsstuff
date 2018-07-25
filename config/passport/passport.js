@@ -91,6 +91,11 @@ module.exports = (passport,user) => {
                         if (newUser) {
 
                             let userinfo = newUser.get()
+
+                            let sendData = {
+                                first_name:userinfo.first_name,
+                                last_name:userinfo.last_name
+                            }
                             const payload = {
                                 sub: newUser.id
                               };
@@ -101,7 +106,7 @@ module.exports = (passport,user) => {
                             let fullName = data.first_name + " "+ data.last_name;
                             welcomeEmail(data.email, fullName)
                             
-                            return done(null, token, userinfo);
+                            return done(null, token, sendData);
 
                         }
 
@@ -164,6 +169,14 @@ module.exports = (passport,user) => {
 
 
                 let userinfo = user.get();
+
+
+
+                let sendData = {
+                    first_name:userinfo.first_name,
+                    last_name:userinfo.last_name
+                }
+
                 const payload = {
                     sub: user.id
                   };
@@ -172,7 +185,7 @@ module.exports = (passport,user) => {
                   const token = jwt.sign(payload, config.jwtSecret);
             
 
-                return done(null,token, userinfo);
+                return done(null,token, sendData);
 
 
             }).catch(function (err) {
