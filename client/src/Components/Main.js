@@ -1,57 +1,19 @@
 import React, { Component } from 'react';
+import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
-
-import { AddJob } from './AddJob';
-import { Navbar } from './Navbar';
+import { Dashboard } from './Dashboard';
+import { Signup } from './Signup';
 import Auth from './Auth';
-import LogoutFunction from './LogoutFunction';
 
 
 import {
-    BrowserRouter as Router,
     Route,
-    Link,
     Redirect,
-    withRouter,
     Switch
-  } from 'react-router-dom'
-import { userInfo } from 'os';
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      Auth.isUserAuthenticated() ? (
-        <Component {...props} {...rest} />
-      ) : (
-        <Redirect to={{
-          pathname: '/',
-          state: { from: props.location }
-        }}/>
-      )
-    )}/>
-  )
-  
-  const LoggedOutRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      Auth.isUserAuthenticated() ? (
-        <Redirect to={{
-          pathname: '/',
-          state: { from: props.location }
-        }}/>
-      ) : (
-        <Component {...props} {...rest} />
-      )
-    )}/>
-  )
-  
-  const PropsRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      <Component {...props} {...rest} />
-    )}/>
-  )
+  } from 'react-router-dom';
 
 export class Main extends Component {
 
@@ -62,7 +24,6 @@ export class Main extends Component {
           user:[]
 
         }
-        // this.toggleAuthenticateStatus = this.toggleAuthenticateStatus.bind(this);
       };
     
       componentDidMount() {
@@ -93,7 +54,12 @@ export class Main extends Component {
     render() {
         return (
             <main role="main">
-                <Navbar isAuth={this.state.authenticated} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} toggleUser={this.toggleUser} user={this.state.user}  />
+                <Navbar 
+                  isAuth={this.state.authenticated} 
+                  toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} 
+                  toggleUser={this.toggleUser} 
+                  user={this.state.user}  
+                />
                 <Route exact path="/" component={Carousel} />
                 {/* <Route exact path="/logout" component={LogoutFunction} /> */}
                 <div className="container marketing">
@@ -101,7 +67,8 @@ export class Main extends Component {
                     <Switch>
 
                         <Route exact path="/" component={JobList} />
-                        <Route path="/dashboard/" component={AddJob} />
+                        <Route path="/signup/" component={Signup} />
+                        <Route path="/dashboard/" component={Dashboard} />
                         <Route path="/jobs/:id" component={JobDetails} />
                     </Switch>
                 </div>
