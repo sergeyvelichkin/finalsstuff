@@ -59,6 +59,10 @@ export class Navbar extends React.Component {
                     this.props.toggleUser(response.data.user)
                     this.setState({user:response.data.user});
                     localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7412c8ea7ecd62ef79174f25ee9be0653b0dd5ba
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -130,14 +134,14 @@ export class Navbar extends React.Component {
                         </ul>
 
                         {this.props.isAuth ? (
-<<<<<<< HEAD
+
                             <div className="nav navbar-nav flex-row justify-content-between ml-auto">
                                     <li className="order-0" style={{margin: "10px"}} >Hello {this.state.user.first_name} {this.state.user.last_name}</li>
                                     <li className="order-1">
                                         <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
                                 </li>
                             </div>
-=======
+
                             <ul className="navbar-nav">
                                 <div class="dropdown mr-1">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -151,7 +155,7 @@ export class Navbar extends React.Component {
                                     <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
                                 </li>
                             </ul>
->>>>>>> master
+
                         ) : (
 
                                 <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
