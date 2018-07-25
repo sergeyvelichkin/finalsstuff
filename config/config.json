@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "u8zu5ve1988",
+    "password": "root",
     "database": "makeArtNotWar_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
