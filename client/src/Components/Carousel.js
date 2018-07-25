@@ -24,7 +24,7 @@ export class Carousel extends Component {
                                             </select>
                                         </div>
                                         <div className="col-md-4">
-                                            <button className="btn btn-block btn-primary  "><i className="fa fa-search"></i>
+                                            <button className="btn btn-block btn-primary"><i className="fa fa-search"></i>
                                             </button>
                                         </div>
                                     </div>
