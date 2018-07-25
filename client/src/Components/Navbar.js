@@ -126,18 +126,19 @@ export class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
+                                <Link className="nav-link" to='/'>Home</Link>
                             </li>
                         </ul>
 
                         {this.props.isAuth ? (
                             <ul className="navbar-nav">
-                                <div class="dropdown mr-1">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="dropdown mr-1">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {this.state.user.first_name} {this.state.user.last_name}
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <Link class="dropdown-item" to="/dashboard">Dashboard</Link>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                        <Link className="dropdown-item" to="#">Profile</Link>
                                     </div>
                                 </div>
                                 <li className="nav-item">
