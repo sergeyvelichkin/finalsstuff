@@ -7,21 +7,16 @@ export class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            localUser: {},
             dbUser: {}
         }
     };
 
-    componentWillMount(){
+    componentDidMount(){
         //get user from localStorage
         const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
         console.log('rehydrate from profile', rehydrate)
-        this.setState({ localUser: rehydrate })
-    };
 
-    componentDidMount() {
-        
-        const { id } = this.state.localUser;
+        const { id } = rehydrate;
         console.log("id", id);
 
         // Make a request for a user with a given ID
@@ -34,11 +29,12 @@ export class Profile extends Component {
             .catch(function (error) {
                 console.log('error', error);
             });
-    }
+    };
+
 
     render() {
         const {id, first_name, last_name, Jobs} = this.state.dbUser;
-        console.log('jobs', Jobs)
+        console.log('Jobs in render', Jobs)
         return (
             <div>
                 <hr className="featurette-divider" />
