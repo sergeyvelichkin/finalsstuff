@@ -5,6 +5,7 @@ import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
 import { DashboardCont } from '../Containers/DashboardCont';
+import { Profile } from './Profile';
 import { Signup } from './Signup';
 import Auth from './Auth';
 
@@ -20,7 +21,7 @@ export class Main extends Component {
         super(props);
         this.state = {
           authenticated: false,
-          user:[]
+          user: []
 
         }
       };
@@ -66,9 +67,9 @@ export class Main extends Component {
                     <Switch>
 
                         <Route exact path="/" component={JobList} />
-                        <Route path="/signup/" component={Signup} />
-                        <Route path="/dashboard/" component={DashboardCont} />
-
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/dashboard" component={DashboardCont} />
+                        <Route path="/profile" component={Profile}/>
                         <Route path="/jobs/:id" component={JobDetails} />
 
                     </Switch>

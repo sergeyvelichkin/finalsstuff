@@ -137,7 +137,7 @@ export class Navbar extends React.Component {
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
-                                        <Link className="dropdown-item" to="#">Profile</Link>
+                                        <Link className="dropdown-item" to="/profile">Profile</Link>
                                     </div>
                                 </div>
                                 <li className="nav-item">

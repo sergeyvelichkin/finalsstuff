@@ -11,7 +11,7 @@ export class Carousel extends Component {
                         <div className="container">
                             <div className="carousel-caption">
                                 <h1>Creation Station 2</h1>
-                                <p>A Freelancer's Emporium</p>
+                                <p>Creation Starts Here</p>
                                 <form action="#" method="GET">
                                     <div className="row">
                                         <div className="col-md-4">
