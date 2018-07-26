@@ -125,7 +125,7 @@ export class Navbar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <Link className="nav-link" to='/'>Home <span className="sr-only">(current)</span></Link>
+                                <Link className="nav-link" to='/'>Home</Link>
                             </li>
                         </ul>
 
@@ -137,6 +137,7 @@ export class Navbar extends React.Component {
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                        <Link className="dropdown-item" to="/profile">Profile</Link>
                                     </div>
                                 </div>
                                 <li className="nav-item">

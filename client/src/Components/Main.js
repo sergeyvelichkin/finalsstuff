@@ -5,6 +5,7 @@ import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
 import { DashboardCont } from '../Containers/DashboardCont';
+import { Profile } from './Profile';
 import { Signup } from './Signup';
 import Auth from './Auth';
 
@@ -74,6 +75,10 @@ export class Main extends Component {
                         <Route exact path="/" render={()=><JobList jobpath={this.state.jobpath} />} />
                         <Route path="/signup/" component={Signup} />
                         <Route path="/dashboard/" component={DashboardCont} />
+           
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/dashboard" component={DashboardCont} />
+                        <Route path="/profile" component={Profile}/>
                         <Route path="/jobs/:id" component={JobDetails} />
 
                     </Switch>
