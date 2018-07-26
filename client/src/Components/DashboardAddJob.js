@@ -40,7 +40,7 @@ export class DashboardAddJob extends Component {
                             <label htmlFor="state">State</label>
                             <select className="custom-select d-block w-100" id="state" required>
                                 <option value="">Choose...</option>
-                                <option>California</option>
+                                <option>Colorado</option>
                             </select>
                             <div className="invalid-feedback">
                                 Please provide a valid state.
