@@ -27,11 +27,18 @@ export class Navbar extends React.Component {
 
       }
 
-      componentWillMount() {
-        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-        console.log(rehydrate)
-        this.setState({user:rehydrate})
-      }
+    //   componentWillMount() {
+    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+    //     console.log(rehydrate)
+    //     this.setState({user:rehydrate})
+    //   }
+
+    //   componentDidUpdate(prevProps){
+    //     if (this.props.user !== prevProps.user) {
+    //         this.setState({user:this.props.user})
+    //       }
+
+    // }
 
 
     
