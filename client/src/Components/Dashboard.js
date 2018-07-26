@@ -108,11 +108,11 @@ export class Dashboard extends Component {
                         </form>
                     </div>
 
-                    <Switch>
+                    {/* <Switch>
                         <Route path="/dashboard/addjob" component={DashboardAddJob} />
                         <Route exact path="/dashboard" component={DashboardJobList} />
                     </Switch>
-                    
+                     */}
 
                 </div>
                 
