@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "",
+    "start": "node app.js && \"cd client && yarn start\"",
     "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\""
   },
   "dependencies": {
