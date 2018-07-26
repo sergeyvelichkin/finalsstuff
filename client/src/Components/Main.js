@@ -21,11 +21,17 @@ export class Main extends Component {
         super(props);
         this.state = {
           authenticated: false,
-          user: []
+          user:[],
+          jobpath:""
 
         }
       };
-    
+      
+      changePath = (value) => {
+        console.log('received : ', value)
+        this.setState({jobpath:value})
+      }
+
       componentDidMount() {
         // check if user is logged in on refresh
         this.toggleAuthenticateStatus()
@@ -60,13 +66,16 @@ export class Main extends Component {
                   toggleUser={this.toggleUser} 
                   user={this.state.user}  
                 />
-                <Route exact path="/" component={Carousel} />
+                <Route exact path="/" render={()=><Carousel onChange={this.changePath} />}  />
                 {/* <Route exact path="/logout" component={LogoutFunction} /> */}
                 <div className="container marketing">
                     {/* Three columns of text below the carousel */}
                     <Switch>
 
-                        <Route exact path="/" component={JobList} />
+                        <Route exact path="/" render={()=><JobList jobpath={this.state.jobpath} />} />
+                        <Route path="/signup/" component={Signup} />
+                        <Route path="/dashboard/" component={DashboardCont} />
+           
                         <Route path="/signup" component={Signup} />
                         <Route path="/dashboard" component={DashboardCont} />
                         <Route path="/profile" component={Profile}/>

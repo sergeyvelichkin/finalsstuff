@@ -8,15 +8,15 @@ export class Signup extends Component {
                 <div className="row">
                     <div className="col-md-4 order-md-1 mb-4">
 
-                        <img src="https://picsum.photos/350/410/?image=859" className="img-fluid rounded" alt="Bicycle On Red Wall" />
+                        <img src="https://picsum.photos/350/410/?image=859" className="img-fluid rounded" alt="Responsive" />
                     </div>
                     <div className="col-md-8 order-md-2 bg-light py-3 rounded">
                         <h4 className="mb-3">Join Us</h4>
-                        <form className="needs-validation" noValidate>
+                        <form className="needs-validation">
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="firstName">First name</label>
-                                    <input type="text" className="form-control" id="firstName" placeholder="" required />
+                                    <label>First name</label>
+                                    <input type="text" className="form-control" id="firstName" placeholder="" value="" required />
                                     <div className="invalid-feedback">
                                         Valid first name is required.
                                     </div>
