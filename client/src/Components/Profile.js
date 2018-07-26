@@ -9,14 +9,14 @@ export class Profile extends Component {
             user: {}
         }
     };
-    componentDidMount() {
-        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-        console.log('rehydrate from profile', rehydrate)
-        this.setState({ user: rehydrate })
-    }
+    // componentDidMount() {
+    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+    //     console.log('rehydrate from profile', rehydrate)
+    //     this.setState({ user: rehydrate })
+    // }
 
     render() {
-        const {id, first_name, last_name} = this.state.user
+        // const {id, first_name, last_name} = this.state.user
         console.log(id)
         return (
             <div>
@@ -26,7 +26,7 @@ export class Profile extends Component {
                         <div className="card" style={{ width: "18rem" }}>
                             <img className="card-img-top" src={`https://picsum.photos/300/?image=${id + 100}`} alt="Card cap" />
                             <div className="card-body">
-                                <h5 className="card-title">{first_name} {last_name}</h5>
+                                <h5 className="card-title">Michael Dough</h5>
                                 <p className="card-text">Graphic Designer</p>
                                 <p className="card-text">Photographer</p>
                                 <Link to="#" className="btn btn-primary">Edit Profile</Link>
