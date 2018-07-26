@@ -27,7 +27,7 @@ export class Profile extends Component {
                             <img className="card-img-top" src={`https://picsum.photos/300/?image=${id + 100}`} alt="Card cap" />
                             <div className="card-body">
                                 <h5 className="card-title">{first_name} {last_name}</h5>
-                                <p className="card-text">Photographer</p>
+                                <p className="card-text">Graphic Designer</p>
                                 <p className="card-text">Photographer</p>
                                 <Link to="#" className="btn btn-primary">Edit Profile</Link>
                             </div>
@@ -37,8 +37,8 @@ export class Profile extends Component {
                     <div className="col-md-8 order-md-2 py-3">
                         <h3 className="card-title">{first_name}'s biography</h3>
                         <hr />
-                        <p className="card-text">Photographer</p>
-                        <p className="card-text">Photographer</p>
+                        <p className="card-text">I’m a freelance multi-disciplinary graphic designer who’s delivered creative and engaging solutions across brand identity, print, packaging, and digital media.</p>
+                        <p className="card-text">In 2013, my online brand campaign for the Dorsey Children’s Hospital won a GDUSA award, one of the most prestigious honors in the graphic design industry</p>
                         <hr />
                         <Link to="#" className="btn btn-social-icon btn-facebook mx-1">
                             <span className="fa fa-facebook"></span>
