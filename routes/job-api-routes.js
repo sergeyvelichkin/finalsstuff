@@ -23,6 +23,7 @@ module.exports = function(app) {
   
 
   app.post("/api/jobs", function(req, res) {
+    console.log(req.body)
     db.Job.create(req.body).then(function(dbJob) {
       res.json(dbJob);
     }).catch(function(err){

@@ -59,7 +59,6 @@ export class Navbar extends React.Component {
                     this.props.toggleUser(response.data.user)
                     this.setState({user:response.data.user});
                     localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
-
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -145,6 +144,7 @@ export class Navbar extends React.Component {
                                     <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
                                 </li>
                             </ul>
+
                         ) : (
 
                                 <ul className="nav navbar-nav flex-row justify-content-between ml-auto">

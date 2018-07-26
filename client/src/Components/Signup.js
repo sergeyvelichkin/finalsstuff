@@ -7,6 +7,7 @@ export class Signup extends Component {
                 <hr className="featurette-divider" />
                 <div className="row">
                     <div className="col-md-4 order-md-1 mb-4">
+
                         <img src="https://picsum.photos/350/410/?image=859" className="img-fluid rounded" alt="Bicycle On Red Wall" />
                     </div>
                     <div className="col-md-8 order-md-2 bg-light py-3 rounded">

@@ -4,7 +4,7 @@ import { Footer } from './Footer';
 import { Carousel } from './Carousel';
 import { JobList } from './JobList';
 import { JobDetails } from './JobDetails';
-import { Dashboard } from './Dashboard';
+import { DashboardCont } from '../Containers/DashboardCont';
 import { Signup } from './Signup';
 import Auth from './Auth';
 
@@ -66,9 +66,11 @@ export class Main extends Component {
                     <Switch>
 
                         <Route exact path="/" component={JobList} />
-                        <Route path="/signup" component={Signup} />
-                        <Route path="/dashboard" component={Dashboard} />
+                        <Route path="/signup/" component={Signup} />
+                        <Route path="/dashboard/" component={DashboardCont} />
+
                         <Route path="/jobs/:id" component={JobDetails} />
+
                     </Switch>
                 </div>
                 {/* FOOTER */}
