@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\"",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
