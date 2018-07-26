@@ -6,6 +6,7 @@ import axios from 'axios';
 export class JobList extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             jobs: []
         }
