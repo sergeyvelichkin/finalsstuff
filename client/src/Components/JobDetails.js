@@ -42,7 +42,7 @@ export class JobDetails extends Component {
                         <p className="lead">{address}</p>
                     </div>
                     <div className="col-md-5">
-                        <img className="featurette-image img-fluid mx-auto" src={`https://picsum.photos/500/?image=${id + 100}`} alt="Generic placeholder" />
+                        <img className="featurette-image img-fluid mx-auto" src={`https://picsum.photos/500/?image=${id + 200}`} alt="Generic placeholder" />
                     </div>
                 </div>
 

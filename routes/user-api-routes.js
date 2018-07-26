@@ -13,7 +13,8 @@ module.exports = function(app) {
     db.User.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [db.Job]
     }).then(function(dbUser) {
       res.json(dbUser);
     });
