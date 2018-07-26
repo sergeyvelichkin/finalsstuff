@@ -68,6 +68,7 @@ export class Main extends Component {
                         <Route exact path="/" component={JobList} />
                         <Route path="/signup/" component={Signup} />
                         <Route path="/dashboard/" component={DashboardCont} />
+
                         <Route path="/jobs/:id" component={JobDetails} />
 
                     </Switch>
