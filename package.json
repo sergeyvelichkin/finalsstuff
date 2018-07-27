@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "",
-    "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\""
+    "start": "node app.js",
+    "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\"",
+    "heroku-prebuild": "rm -rf public && mkdir public",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",

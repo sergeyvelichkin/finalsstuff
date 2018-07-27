@@ -12,9 +12,21 @@ export class JobList extends Component {
         }
     }
 
+    componentDidUpdate(prevProps){
+        if (this.props.jobpath !== prevProps.jobpath) {
+            this.fetchData(this.props.jobpath);
+          }
+
+    }
+
     componentDidMount() {
-        // Get all jobs from database.
-        axios.get('/api/jobs')
+        this.fetchData('');
+
+    }
+
+    fetchData(toAdd) {
+        let fullPath = '/api/jobs/' + toAdd;
+        axios.get(fullPath)
             .then(response => {
                 let data = response.data;
                 console.log('success', data);
@@ -23,8 +35,9 @@ export class JobList extends Component {
             .catch(function (error) {
                 console.log('error', error);
             });
-
     }
+
+
 
     render() {
         return (

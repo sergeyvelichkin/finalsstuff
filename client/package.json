@@ -1,7 +1,12 @@
 {
   "name": "the_mern_client",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080",
+  "proxy": {
+    "/*": {
+      "target": "http://localhost:8080",
+      "secure": false
+    }
+  },
   "private": true,
   "dependencies": {
     "nodemon": "^1.18.3",

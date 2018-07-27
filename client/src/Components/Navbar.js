@@ -133,7 +133,7 @@ export class Navbar extends React.Component {
                             <ul className="navbar-nav">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {this.state.user.first_name} {this.state.user.last_name}
+                                        {this.state.user.first_name ? (this.state.user.first_name,  this.state.user.last_name) : ""}
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
