@@ -27,18 +27,11 @@ export class Navbar extends React.Component {
 
       }
 
-    //   componentWillMount() {
-    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-    //     console.log(rehydrate)
-    //     this.setState({user:rehydrate})
-    //   }
-
-    //   componentDidUpdate(prevProps){
-    //     if (this.props.user !== prevProps.user) {
-    //         this.setState({user:this.props.user})
-    //       }
-
-    // }
+      componentWillMount() {
+        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+        console.log(rehydrate)
+        this.setState({user:rehydrate})
+      }
 
 
     
@@ -140,7 +133,7 @@ export class Navbar extends React.Component {
                             <ul className="navbar-nav">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Jacobo
+                                        {this.state.user.first_name} {this.state.user.last_name}
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
