@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
+import localStorage from 'localStorage';
 
 
 export class Navbar extends React.Component {

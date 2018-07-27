@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../bootstrap-social.css';
 import axios from 'axios';
+import localStorage from 'localStorage';
 
 export class Profile extends Component {
     constructor(props) {

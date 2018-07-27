@@ -9,7 +9,7 @@ export class JobItem extends Component {
 
         return (
             <div className="col-lg-4">
-                <img className="rounded-circle" src={`https://picsum.photos/300/?image=${id + 200}`} alt="Generic placeholder" width="140" height="140" />
+                <img className="rounded-circle" src={`https://picsum.photos/300/?image=${id + 111}`} alt="Generic placeholder" width="140" height="140" />
 
                 <h2>{title}</h2>
                 <p>${cost}</p>

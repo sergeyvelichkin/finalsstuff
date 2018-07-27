@@ -40,8 +40,7 @@ module.exports = function (sequelize, DataTypes) {
           args: [3],
           msg: "First name must have at least 3 characters in length"
         }
-      },
-        defaultValue: "Jacobo"
+      }
     },
     last_name: {
       type: DataTypes.STRING,
@@ -51,8 +50,7 @@ module.exports = function (sequelize, DataTypes) {
           args: [3],
           msg: "Last name must have at least 3 characters in length"
         }
-      },
-      defaultValue: "Jacobo"
+      }
     },
     avatar: {
       type: DataTypes.STRING,

@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { DashboardAddJob } from './DashboardAddJob';
-import { DashboardJobList } from './DashboardJobList';
-import {
-    Route,
-    Redirect,
-    Switch
-  } from 'react-router-dom';
 
 export class Dashboard extends Component {
 
