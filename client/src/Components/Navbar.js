@@ -11,7 +11,6 @@ export class Navbar extends React.Component {
         this.state = {
             email: '',
             password: '',
-            user: [],
             errors: []
         };
 
@@ -28,11 +27,11 @@ export class Navbar extends React.Component {
 
       }
 
-      componentWillMount() {
-        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-        console.log(rehydrate)
-        this.setState({user:rehydrate})
-      }
+    //   componentWillMount() {
+    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+    //     console.log(rehydrate)
+    //     this.setState({user:rehydrate})
+    //   }
 
 
     
@@ -58,8 +57,8 @@ export class Navbar extends React.Component {
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
-                    this.setState({user:response.data.user});
-                    localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
+                    // this.setState({user:response.data.user});
+                    // localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -134,7 +133,7 @@ export class Navbar extends React.Component {
                             <ul className="navbar-nav">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {this.state.user.first_name}  {this.state.user.last_name}
+                                        {this.props.user.first_name}  {this.props.user.last_name}
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
