@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../bootstrap-social.css';
 import axios from 'axios';
-import localStorage from 'localStorage';
 
 export class Profile extends Component {
     constructor(props) {
@@ -13,7 +12,7 @@ export class Profile extends Component {
     };
 
     componentDidMount(){
-        
+        console.log("Props" , this.props.user)
         // Make a request for a user with a given ID
         axios.get(`/api/users/${this.props.user.id}`)
             .then(response => {
