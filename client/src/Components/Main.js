@@ -78,7 +78,7 @@ export class Main extends Component {
            
                         <Route path="/signup" component={Signup} />
                         <Route path="/dashboard" component={DashboardCont} />
-                        <Route path="/profile" render={()=><JobList user={this.state.user} />}/>
+                        <Route path="/profile" render={()=><Profile user={this.state.user} />}/>
                         <Route path="/jobs/:id" component={JobDetails} />
 
                     </Switch>
