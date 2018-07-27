@@ -9,23 +9,24 @@ export class Profile extends Component {
             user: {}
         }
     };
-    // componentDidMount() {
-    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-    //     console.log('rehydrate from profile', rehydrate)
-    //     this.setState({ user: rehydrate })
-    // }
+    componentDidMount() {
+        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+        console.log('rehydrate from profile', rehydrate)
+        this.setState({ user: rehydrate })
+    }
 
     render() {
-        // const {id, first_name, last_name} = this.state.user
+        const {id, first_name, last_name} = this.state.user
+        console.log(id)
         return (
             <div>
                 <hr className="featurette-divider" />
                 <div className="row">
                     <div className="col-md-4 order-md-1 mb-4">
                         <div className="card" style={{ width: "18rem" }}>
-                            <img className="card-img-top" src={`https://picsum.photos/300/?image=101}`} alt="Card cap" />
+                            <img className="card-img-top" src={`https://picsum.photos/300/?image=${id + 100}`} alt="Card cap" />
                             <div className="card-body">
-                                <h5 className="card-title">Michael Dough</h5>
+                                <h5 className="card-title">{first_name} {last_name}</h5>
                                 <p className="card-text">Graphic Designer</p>
                                 <p className="card-text">Photographer</p>
                                 <Link to="#" className="btn btn-primary">Edit Profile</Link>
@@ -34,7 +35,7 @@ export class Profile extends Component {
 
                     </div>
                     <div className="col-md-8 order-md-2 py-3">
-                        <h3 className="card-title">Michael's biography</h3>
+                        <h3 className="card-title">{first_name}'s biography</h3>
                         <hr />
                         <p className="card-text">I’m a freelance multi-disciplinary graphic designer who’s delivered creative and engaging solutions across brand identity, print, packaging, and digital media.</p>
                         <p className="card-text">In 2013, my online brand campaign for the Dorsey Children’s Hospital won a GDUSA award, one of the most prestigious honors in the graphic design industry</p>

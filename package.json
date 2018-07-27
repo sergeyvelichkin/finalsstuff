@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node app.js\" \"cd client && yarn start\"",
+    "start": "node app.js",
     "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
