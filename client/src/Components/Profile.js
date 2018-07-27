@@ -13,15 +13,9 @@ export class Profile extends Component {
     };
 
     componentDidMount(){
-        //get user from localStorage
-        const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-        console.log('rehydrate from profile', rehydrate)
-
-        const { id } = rehydrate;
-        console.log("id", id);
-
+        
         // Make a request for a user with a given ID
-        axios.get(`/api/users/${id}`)
+        axios.get(`/api/users/${this.props.user.id}`)
             .then(response => {
                 let data = response.data;
                 console.log('success detail data', data);
