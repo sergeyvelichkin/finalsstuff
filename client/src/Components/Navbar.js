@@ -2,7 +2,6 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
-import localStorage from 'localStorage';
 
 
 export class Navbar extends React.Component {
@@ -27,14 +26,6 @@ export class Navbar extends React.Component {
 
       }
 
-    //   componentWillMount() {
-    //     const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
-    //     console.log(rehydrate)
-    //     this.setState({user:rehydrate})
-    //   }
-
-
-    
       handleSubmit(event) {
         
         event.preventDefault();
