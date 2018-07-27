@@ -8,7 +8,6 @@ export class DashboardCont extends Component {
         super(props);
         this.state = {
             successMessage: [],
-            
             title: '',
             description: '',
             city: '',
@@ -32,7 +31,6 @@ export class DashboardCont extends Component {
     handleSubmit(event) {
 
         event.preventDefault();
-        console.log(this.state);
 
 
         axios.post('/api/jobs', {
