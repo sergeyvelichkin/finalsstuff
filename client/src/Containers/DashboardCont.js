@@ -36,7 +36,7 @@ export class DashboardCont extends Component {
 
 
         axios.post('/api/jobs', {
-            UserId:JSON.parse(localStorage.getItem('someSavedState')).id,
+            UserId:this.props.user.id,
             title: this.state.title,
             description: this.state.description,
             city: this.state.city,
