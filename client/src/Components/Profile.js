@@ -1,23 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../bootstrap-social.css';
+import axios from 'axios';
 
 export class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            dbUser: {}
         }
     };
-    componentDidMount() {
+
+    componentDidMount(){
+        //get user from localStorage
         const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
         console.log('rehydrate from profile', rehydrate)
-        this.setState({ user: rehydrate })
-    }
+
+        const { id } = rehydrate;
+        console.log("id", id);
+
+        // Make a request for a user with a given ID
+        axios.get(`/api/users/${id}`)
+            .then(response => {
+                let data = response.data;
+                console.log('success detail data', data);
+                this.setState({ dbUser: data});
+            })
+            .catch(function (error) {
+                console.log('error', error);
+            });
+    };
+
 
     render() {
-        const {id, first_name, last_name} = this.state.user
-        console.log(id)
+        const {id, first_name, last_name, Jobs} = this.state.dbUser;
+        console.log('Jobs in render', Jobs)
         return (
             <div>
                 <hr className="featurette-divider" />
@@ -39,6 +56,23 @@ export class Profile extends Component {
                         <hr />
                         <p className="card-text">I’m a freelance multi-disciplinary graphic designer who’s delivered creative and engaging solutions across brand identity, print, packaging, and digital media.</p>
                         <p className="card-text">In 2013, my online brand campaign for the Dorsey Children’s Hospital won a GDUSA award, one of the most prestigious honors in the graphic design industry</p>
+                        <hr />
+
+                        
+                            <div className="my-3 p-3 bg-white rounded box-shadow">
+                                <h6 className="border-bottom border-gray pb-2 mb-0">My Jobs</h6>
+                                {Jobs && Jobs.map(job => (
+                                    <div className="media text-muted pt-3" key={job.id}>
+                                    <img src={`https://picsum.photos/32/?image=${job.id + 100}`} alt="" className="mr-2 rounded" />
+                                    <p className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                        <Link to={`/jobs/${job.id}`}><strong className="d-block text-gray-dark">{job.title}</strong></Link>
+                                        {job.description}
+                                    </p>
+                                    </div>
+                                ))}
+                            </div>
+                        
+
                         <hr />
                         <Link to="#" className="btn btn-social-icon btn-facebook mx-1">
                             <span className="fa fa-facebook"></span>

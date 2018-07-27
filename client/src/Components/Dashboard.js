@@ -20,6 +20,7 @@ export class Dashboard extends Component {
 
 
     render() {
+        console.log("messages", this.props.successMessage)
         return (
             <div>
                 <hr className="featurette-divider" />
@@ -102,17 +103,19 @@ export class Dashboard extends Component {
 
                             </div>
 
-                            {this.props.successMessage ? (<p className="success-message">{this.props.successMessage}</p>) : (<p/>)}
+                            {
+                                this.props.successMessage.length > 0 &&
+                                    <div className="alert alert-success my-1" role="alert">
+                                        {this.props.successMessage}
+                                    </div>
+                                    
+                            }
                             <hr className="mb-4" />
                             <button className="btn btn-primary btn-lg btn-block" type="submit" value="Submit">Create Job</button>
                         </form>
                     </div>
 
-                    {/* <Switch>
-                        <Route path="/dashboard/addjob" component={DashboardAddJob} />
-                        <Route exact path="/dashboard" component={DashboardJobList} />
-                    </Switch>
-                     */}
+
 
                 </div>
                 

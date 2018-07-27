@@ -8,8 +8,9 @@ export class JobItem extends Component {
         const {id, title, cost} = this.props.job
 
         return (
-            <div className="col-md-3 col-sm-6">
-                <img className="rounded-circle" src={`https://picsum.photos/300/?image=${id + 111}`} alt="Generic placeholder" width="140" height="140" />
+            <div className="col-lg-4">
+                <img className="rounded-circle" src={`https://picsum.photos/300/?image=${id + 200}`} alt="Generic placeholder" width="140" height="140" />
+
                 <h2>{title}</h2>
                 <p>${cost}</p>
                 <p><Link className="btn btn-secondary" to={`/jobs/${id}`} role="button">View details &raquo;</Link></p>
