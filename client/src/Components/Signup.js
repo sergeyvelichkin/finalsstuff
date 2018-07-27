@@ -16,14 +16,14 @@ export class Signup extends Component {
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label>First name</label>
-                                    <input type="text" className="form-control" id="firstName" placeholder="" value="" required />
+                                    <input type="text" className="form-control" id="firstName" name="firstname" placeholder="First name" required />
                                     <div className="invalid-feedback">
                                         Valid first name is required.
                                     </div>
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="lastName">Last name</label>
-                                    <input type="text" className="form-control" id="lastName" placeholder="" required />
+                                    <input type="text" className="form-control" id="lastName" name="lastname" placeholder="" required />
                                     <div className="invalid-feedback">
                                         Valid last name is required.
                                     </div>
@@ -32,7 +32,7 @@ export class Signup extends Component {
 
                             <div className="mb-3">
                                 <label htmlFor="email">Email</label>
-                                <input type="email" className="form-control" id="email" placeholder="you@example.com" />
+                                <input type="email" className="form-control" id="email" name="email" placeholder="you@example.com" />
                                 <div className="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
@@ -41,7 +41,7 @@ export class Signup extends Component {
                             <div className="mb-3">
                                 <label htmlFor="password">Password</label>
                                 <div className="input-group">
-                                    <input type="password" className="form-control" id="password" placeholder="password" required />
+                                    <input type="password" className="form-control" id="password" placeholder="password" name="password" required />
                                     <div className="invalid-feedback" style={{ width: "100%" }}>
                                         Your password is required.
                                     </div>
