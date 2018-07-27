@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
 
@@ -52,7 +52,7 @@ export class Navbar extends React.Component {
           
                 if (response.data.user.message){
                     this.setState({errors:response.data.user.message});
-                }else {
+                } else {
                     Auth.authenticateUser(response.data.token);
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
