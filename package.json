@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "concurrently \"nodemon app.js\" \"cd client && yarn start\"",
+    "heroku-prebuild": "rm -rf public && mkdir public",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
