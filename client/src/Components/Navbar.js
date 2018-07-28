@@ -10,13 +10,18 @@ export class Navbar extends React.Component {
         this.state = {
             email: '',
             password: '',
-            errors: []
+            errors: [],
+            user:[]
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
+    }
+
+    componentWillMount(){
+        this.setState({user:JSON.parse(sessionStorage.getItem('someSavedState'))});
     }
 
     handleChange(evt) {
