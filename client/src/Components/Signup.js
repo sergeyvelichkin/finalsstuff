@@ -45,8 +45,8 @@ export class Signup extends Component {
                 console.log("Response: ");
                 console.log(response)
 
-                if (response.data.errors) {
-                    this.setState({ successMessage: "Not created, try again later" });
+                if (response.data.user.message) {
+                    this.setState({ successMessage: response.data.user.message });
                 } else {
                     this.setState({ successMessage: "User created, try to logIn" });
                 }
@@ -107,7 +107,7 @@ export class Signup extends Component {
                             
                             {this.state.successMessage.length > 0 &&
                                     <div className="alert alert-success my-1" role="alert">
-                                        {this.props.successMessage}
+                                        {this.state.successMessage}
                                     </div>
                                     
                             }
