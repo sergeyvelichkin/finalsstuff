@@ -2,6 +2,7 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
+import { userInfo } from 'os';
 
 
 export class Navbar extends React.Component {
@@ -20,9 +21,13 @@ export class Navbar extends React.Component {
         this.handleSignOut = this.handleSignOut.bind(this);
     }
 
-    componentWillMount(){
-        this.setState({user:JSON.parse(sessionStorage.getItem('someSavedState'))});
+    componentDidMount(){
+        const user = JSON.parse(sessionStorage.getItem('someSavedState'));
+         this.setState({user:user});
+        console.log(this.state.user)
+            
     }
+
 
     handleChange(evt) {
         // check it out: we get the evt.target.name (which will be either "email" or "password")
@@ -129,7 +134,7 @@ export class Navbar extends React.Component {
                             <ul className="navbar-nav">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {this.state.user.first_name}  {this.state.user.last_name}
+                                     {this.state.user.first_name} {this.state.user.last_name} 
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
