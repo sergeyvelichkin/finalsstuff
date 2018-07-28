@@ -48,8 +48,8 @@ export class Navbar extends React.Component {
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
-                    // this.setState({user:response.data.user});
-                    // localStorage.setItem('someSavedState', JSON.stringify(response.data.user))
+                    
+                    sessionStorage.setItem('someSavedState', JSON.stringify(response.data.user))
                 }
             }).catch(error => {
                 console.log('Sign in server error');
