@@ -34,7 +34,7 @@ export class Signup extends Component {
         console.log(this.state);
 
 
-        axios.post('/signup', {
+        axios.post('/api/signup', {
             first_name: this.state.firstname,
             last_name: this.state.lastname,
             email: this.state.email,

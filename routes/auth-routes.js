@@ -1,6 +1,6 @@
 
 module.exports = (app, passport) => {    
-    app.post('/signin', (req, res, next) => {
+    app.post('/api/signin', (req, res, next) => {
         
         return passport.authenticate('local-signin', (err, token, userData) => {
           if (err) {
@@ -28,7 +28,7 @@ module.exports = (app, passport) => {
       });
       
 
-    app.post('/signup', (req, res, next) => {
+    app.post('/api/signup', (req, res, next) => {
         
       return passport.authenticate('local-signup', (err,token,userData) => {
           if (err) {

@@ -34,7 +34,7 @@ export class Navbar extends React.Component {
         console.log(this.state.email);
         console.log(this.state.password);
 
-        axios.post('/signin', {
+        axios.post('/api/signin', {
             email: this.state.email,
             password: this.state.password
         })
@@ -72,7 +72,7 @@ export class Navbar extends React.Component {
 
         event.preventDefault();
 
-        axios.post('/signup', {
+        axios.post('/api/signup', {
             email: this.state.email,
             password: this.state.password
         })
