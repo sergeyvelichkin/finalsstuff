@@ -12,9 +12,10 @@ export class Profile extends Component {
     };
 
     componentDidMount(){
-        console.log("Props" , this.props.user)
+
+        console.log(JSON.parse(localStorage.getItem('token')).user);
         // Make a request for a user with a given ID
-        axios.get(`/api/users/${this.props.user.id}`)
+        axios.get(`/api/users/${JSON.parse(localStorage.getItem('token')).user.id}`)
             .then(response => {
                 let data = response.data;
                 console.log('success detail data', data);
@@ -33,7 +34,7 @@ export class Profile extends Component {
             <div>
                 <hr className="featurette-divider" />
                 <div className="row">
-                    <div className="col-md-4 order-md-1 mb-4">
+                    <div className="col-md-4 col-sm-12 order-md-1 mb-4">
                         <div className="card" style={{ width: "18rem" }}>
                             <img className="card-img-top" src={`https://picsum.photos/300/?image=${id + 100}`} alt="Card cap" />
                             <div className="card-body">
@@ -45,7 +46,7 @@ export class Profile extends Component {
                         </div>
 
                     </div>
-                    <div className="col-md-8 order-md-2 py-3">
+                    <div className="col-md-8 col-sm-12 order-md-2 py-3">
                         <h3 className="card-title">{first_name}'s biography</h3>
                         <hr />
                         <p className="card-text">I’m a freelance multi-disciplinary graphic designer who’s delivered creative and engaging solutions across brand identity, print, packaging, and digital media.</p>
