@@ -6,7 +6,7 @@ class Auth {
      * @param {string} token
      */
     static authenticateUser(token, data) {
-      console.log("userdata to save : ", data)
+      
       let datatoSave = {
         token:token,
         user:data
