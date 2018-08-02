@@ -21,14 +21,6 @@ export class Navbar extends React.Component {
         this.handleSignOut = this.handleSignOut.bind(this);
     }
 
-    componentDidMount(){
-        const user = JSON.parse(sessionStorage.getItem('someSavedState'));
-         this.setState({user:user});
-        console.log(this.state.user)
-            
-    }
-
-
     handleChange(evt) {
         // check it out: we get the evt.target.name (which will be either "email" or "password")
         // and use it to target the key on our `state` object with the same name, using bracket syntax
@@ -54,12 +46,10 @@ export class Navbar extends React.Component {
                 if (response.data.user.message){
                     this.setState({errors:response.data.user.message});
                 } else {
-                    Auth.authenticateUser(response.data.token);
+                    Auth.authenticateUser(response.data.token, response.data.user);
                     this.props.toggleAuthenticateStatus();
                     console.log(response.data.user)
                     this.props.toggleUser(response.data.user)
-                    
-                    sessionStorage.setItem('someSavedState', JSON.stringify(response.data.user))
                 }
             }).catch(error => {
                 console.log('Sign in server error');
@@ -82,9 +72,6 @@ export class Navbar extends React.Component {
 
         event.preventDefault();
 
-        console.log(this.state.email);
-        console.log(this.state.password);
-
         axios.post('/signup', {
             email: this.state.email,
             password: this.state.password
@@ -99,12 +86,10 @@ export class Navbar extends React.Component {
 
                     console.log('sucessfull sign up');
 
-                    Auth.authenticateUser(response.data.token);
+                    Auth.authenticateUser(response.data.token, response.data.user);
 
                     this.props.toggleAuthenticateStatus(response.data.user);
 
-
-                    this.setState({user:response.data.user});
 
                 }
             }).catch(error => {
@@ -134,7 +119,7 @@ export class Navbar extends React.Component {
                             <ul className="navbar-nav">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     {this.state.user.first_name} {this.state.user.last_name} 
+                                     {JSON.parse(localStorage.getItem('token')).user.first_name} {JSON.parse(localStorage.getItem('token')).user.last_name} 
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
@@ -172,27 +157,6 @@ export class Navbar extends React.Component {
                                         </ul>
                                     </li>
 
-                                    {/*<li className="dropdown ml-1">
-                                        <button type="button" id="dropdownMenu2" data-toggle="dropdown" className="btn btn-primary dropdown-toggle">Sign up <span className="caret"></span></button>
-                                        <ul className="dropdown-menu dropdown-menu-right mt-2">
-                                            <li className="px-3 py-2">
-                                                <form className="form" onSubmit={this.handleSignup}>
-                                                    <div className="form-group">
-                                                        <input id="emailInputSignup" placeholder="Email" className="form-control form-control-sm" type="text" name="email" value={this.state.email} onChange={this.handleChange} required="" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <input id="passwordInputSignup" placeholder="Password" className="form-control form-control-sm" type="text" required="" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <input id="passwordInput" placeholder="Confirm Password" className="form-control form-control-sm" type="text" name="password" value={this.state.password} onChange={this.handleChange} required="" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <button type="submit" className="btn btn-primary btn-block">Sign up</button>
-                                                    </div>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>*/}
                                     <li className="nav-item ml-1">
                                         <Link className="btn btn-primary" to='/signup'>Sign Up</Link>
 
