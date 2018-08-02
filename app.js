@@ -35,7 +35,7 @@ app.use(flash());
 
 // Requiring our models for syncing
 
-app.get('*', (request, response) => {
+app.get('/', (request, response) => {
 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
