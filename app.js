@@ -28,17 +28,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); 
 
-
-// Requiring our models for syncing
-
-require('./routes/auth-routes.js')(app, passport);
-
-
-
 // // Routes
 // // =============================================================
 require("./routes/user-api-routes.js")(app);
 require("./routes/job-api-routes.js")(app);
+require('./routes/auth-routes.js')(app, passport);
 
 
 db.sequelize.sync({}).then(function () {
