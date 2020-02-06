@@ -18,23 +18,22 @@ export class DashboardCont extends Component {
 
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
-    handleChange(field, value) {
+    handleChange = (field, value) => {
         // parent class change handler is always called with field name and value
         this.setState({[field]: value});
     }
 
-    handleSubmit(event) {
+    handleSubmit= (event) => {
 
         event.preventDefault();
 
+        event.target.reset()
+
 
         axios.post('/api/jobs', {
-            UserId:this.props.user.id,
+            UserId:JSON.parse(localStorage.getItem('token')).user.id,
             title: this.state.title,
             description: this.state.description,
             city: this.state.city,
@@ -47,10 +46,10 @@ export class DashboardCont extends Component {
                 console.log("Response: ");
                 console.log(response)
 
-                if (response.data.errors) {
+                if (response.status !== 200) {
                     this.setState({ successMessage: "Job was not posted, try again later" });
                 } else {
-                    this.setState({ successMessage: "Job was succesfully posted" });
+                    this.setState({ successMessage: "Job was succesfully posted"});
                 }
             }).catch(error => {
                 console.log('Job post error');

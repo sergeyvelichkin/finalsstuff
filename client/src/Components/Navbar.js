@@ -2,7 +2,6 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import axios from 'axios';
 import Auth from './Auth';
-import { userInfo } from 'os';
 
 
 export class Navbar extends React.Component {
@@ -15,20 +14,16 @@ export class Navbar extends React.Component {
             user:[]
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSignup = this.handleSignup.bind(this);
-        this.handleSignOut = this.handleSignOut.bind(this);
     }
 
-    handleChange(evt) {
+    handleChange = (evt) => {
         // check it out: we get the evt.target.name (which will be either "email" or "password")
         // and use it to target the key on our `state` object with the same name, using bracket syntax
         this.setState({ [evt.target.name]: evt.target.value });
 
       }
 
-      handleSubmit(event) {
+      handleSubmit = (event) => {
         
         event.preventDefault();
         console.log(this.state.email);
@@ -57,7 +52,7 @@ export class Navbar extends React.Component {
             })
     }
 
-    handleSignOut(event) {
+    handleSignOut = (event)=> {
 
 
         event.preventDefault();
@@ -65,10 +60,11 @@ export class Navbar extends React.Component {
         Auth.deauthenticateUser();
 
         this.props.toggleAuthenticateStatus();
-
+        
+        this.props.history.push('/');
     }
 
-    handleSignup(event) {
+    handleSignup= (event) => {
 
         event.preventDefault();
 

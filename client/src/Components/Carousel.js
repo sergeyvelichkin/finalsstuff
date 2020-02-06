@@ -9,25 +9,18 @@ export class Carousel extends Component {
             jobpath:""
         };
 
-        this.onFieldChange = this.onFieldChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
-    onFieldChange(event) {
+    onFieldChange = (event) => {
         // for a regular input field, read field name and value from the event
         const fieldValue = "city/"+event.target.value;
         this.setState({jobpath: fieldValue});
     }
 
-    handleSubmit(event){
+    handleSubmit =(event) => {
         event.preventDefault();
-        console.log('Submitted' , this.state.jobpath)
         this.props.onChange(this.state.jobpath);
-    }
-
-    componentDidMount(){
-        console.log(this.props)
     }
 
     render() {

@@ -8,12 +8,11 @@ import { DashboardCont } from '../Containers/DashboardCont';
 import { Profile } from './Profile';
 import { Signup } from './Signup';
 import Auth from './Auth';
-
-
 import {
     Route,
-    Switch
+    Switch,
   } from 'react-router-dom';
+
 
 export class Main extends Component {
 
@@ -35,12 +34,14 @@ export class Main extends Component {
       componentDidMount() {
         // check if user is logged in on refresh
         this.toggleAuthenticateStatus()
+        console.log("main props")
+        console.log(this.context.history)
       }
     
       toggleAuthenticateStatus() {
         // check authenticated status and toggle state based on that
         this.setState({ 
-            authenticated: Auth.isUserAuthenticated()
+            authenticated: Auth.isUserAuthenticated(),
          })
 
       }
@@ -60,14 +61,18 @@ export class Main extends Component {
     render() {
         return (
             <main role="main">
-                <Navbar 
+ 
+                <Route path="/" render={(props)=><Navbar {...props}
                   isAuth={this.state.authenticated} 
                   toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} 
                   toggleUser={this.toggleUser} 
-                  user={this.state.user}  
-                />
+                  user={this.state.user} 
+                />}  />
+                
+
+
                 <Route exact path="/" render={()=><Carousel onChange={this.changePath} />}  />
-                {/* <Route exact path="/logout" component={LogoutFunction} /> */}
+                
                 <div className="container marketing">
                     {/* Three columns of text below the carousel */}
                     <Switch>

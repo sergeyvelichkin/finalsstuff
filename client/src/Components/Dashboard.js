@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom';
 export class Dashboard extends Component {
 
     
-    onFieldChange(event) {
+    onFieldChange = (event) => {
         // for a regular input field, read field name and value from the event
         const fieldName = event.target.name;
         const fieldValue = event.target.value;
         this.props.onChange(fieldName, fieldValue);
     }
 
+    cancelCourse = () => { 
+        document.getElementById("create-course-form").reset();
+      }
+
 
     render() {
-        console.log("messages", this.props.successMessage)
         return (
             <div>
                 <hr className="featurette-divider" />
@@ -40,11 +43,11 @@ export class Dashboard extends Component {
                     </div>
                     <div className="col-md-8 order-md-2 bg-light py-3">
                         <h4 className="mb-3">Add a new Job</h4>
-                        <form className="needs-validation" onSubmit={this.props.onSubmit}>
+                        <form id="create-course-form" className="needs-validation" onSubmit={this.props.onSubmit}>
                             <div className="mb-3">
                                 <label>Title</label>
                                 <div className="input-group">
-                                    <input type="text" className="form-control" id="title" placeholder="title" name="title" onChange={this.onFieldChange.bind(this)} required />
+                                    <input type="text" className="form-control" id="title" placeholder="title" name="title" onChange={this.onFieldChange} required />
                                     <div className="invalid-feedback" style={{ width: "100%" }}>
                                         Title is required.
                                     </div>
@@ -53,12 +56,12 @@ export class Dashboard extends Component {
 
                             <div className="mb-3 form-group">
                                 <label>Description</label>
-                                <textarea className="form-control" id="description" rows="3" name="description"  onChange={this.onFieldChange.bind(this)}></textarea>
+                                <textarea className="form-control" id="description" rows="3" name="description"  onChange={this.onFieldChange}></textarea>
                             </div>
 
                             <div className="mb-3">
                                 <label>City</label>
-                                <input type="text" className="form-control" id="City" placeholder="Denver" name="city"  onChange={this.onFieldChange.bind(this)} required />
+                                <input type="text" className="form-control" id="City" placeholder="Denver" name="city"  onChange={this.onFieldChange} required />
                                 <div className="invalid-feedback">
                                     Please provide city name
                                 </div>
@@ -67,9 +70,59 @@ export class Dashboard extends Component {
                             <div className="row">
                                 <div className="col-md-6 mb-6">
                                     <label>State</label>
-                                    <select className="custom-select d-block w-100" id="state" name="state"  onChange={this.onFieldChange.bind(this)} required>
+                                    <select className="custom-select d-block w-100" id="state" name="state"  onChange={this.onFieldChange} required>
                                         <option value="">Choose...</option>
-                                        <option value="California">California</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
                                     </select>
                                     <div className="invalid-feedback">
                                         Please provide a valid state.
@@ -77,7 +130,7 @@ export class Dashboard extends Component {
                                 </div>
                                 <div className="col-md-6 mb-6">
                                     <label>Zip</label>
-                                    <input type="text" className="form-control" id="zip" placeholder="zip code" name="zip"  onChange={this.onFieldChange.bind(this)} required />
+                                    <input type="text" className="form-control" id="zip" placeholder="zip code" name="zip"  onChange={this.onFieldChange} required />
                                     <div className="invalid-feedback">
                                         Zip code required.
                                     </div>
@@ -88,7 +141,7 @@ export class Dashboard extends Component {
 
                                  <div className="col-md-12 mb-12">
                                     <label>Cost</label>
-                                    <input type="text" className="form-control" id="cost" placeholder="How much you can pay?" name="cost"  onChange={this.onFieldChange.bind(this)} required />
+                                    <input type="text" className="form-control" id="cost" placeholder="How much you can pay?" name="cost"  onChange={this.onFieldChange} required />
                                     <div className="invalid-feedback">
                                         You need to put price.
                                     </div>
