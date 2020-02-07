@@ -12,12 +12,14 @@ var flash    = require('connect-flash');
 
 const db = require("./models");
 
-
-
 require('./config/passport/passport.js')(passport,db.User);
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}else {
+  app.use(express.static('public'))
+}
 
-app.use(express.static('public'))
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,11 +30,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); 
 
+
+// Requiring our models for syncing
+
+app.get('/', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
+require('./routes/auth-routes.js')(app, passport);
+
+
+
 // // Routes
 // // =============================================================
 require("./routes/user-api-routes.js")(app);
 require("./routes/job-api-routes.js")(app);
-require('./routes/auth-routes.js')(app, passport);
+
 
 
 db.sequelize.sync({}).then(function () {
