@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.use(session({ secret: 'trevlazyasshole', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'trevlazyasshole', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); 
