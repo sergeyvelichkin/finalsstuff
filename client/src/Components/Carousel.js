@@ -30,9 +30,9 @@ export class Carousel extends Component {
                     <div className="carousel-item active">
                         <img className="first-slide" src="https://picsum.photos/1400/500/?image=859" alt="First slide" />
                         <div className="container">
-                            <div className="carousel-caption" style={{marginBottom : 100}}>
+                            <div className="carousel-caption" style={{marginBottom : 10, marginTop : 10 }}>
                                 <h1>Creation Station 2</h1>
-                                <p style={{marginTop : 100}}>A Freelancer's Emporium</p>
+                                <p style={{marginTop :  80}}>A Freelancer's Emporium</p>
                                 <form action="#" style={{marginTop : 100}} onSubmit={this.handleSubmit}>
                                     <div className="row">
                                         <div className="col-md-9">
