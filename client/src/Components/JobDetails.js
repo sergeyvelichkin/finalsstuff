@@ -13,6 +13,8 @@ export class JobDetails extends Component {
     componentDidMount(){
 
         const { id } = this.props.match.params
+        console.log('Props of job details')
+        console.log(this.props)
         console.log('This is the job id', id)
 
         // Make a request for a job with a given ID

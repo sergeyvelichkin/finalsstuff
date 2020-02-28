@@ -1,5 +1,6 @@
 
 module.exports = (app, passport) => {    
+
     app.post('/signin', (req, res, next) => {
         
         return passport.authenticate('local-signin', (err, token, userData) => {
@@ -17,7 +18,7 @@ module.exports = (app, passport) => {
             });
           }
       
-      
+          
           return res.json({
             success: true,
             message: 'You have successfully logged in!',
