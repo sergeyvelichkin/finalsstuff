@@ -35,7 +35,7 @@ export class Main extends Component {
         // check if user is logged in on refresh
         this.toggleAuthenticateStatus()
         console.log("main props")
-        console.log(this.context.history)
+        console.log(this.props)
       }
     
       toggleAuthenticateStatus() {

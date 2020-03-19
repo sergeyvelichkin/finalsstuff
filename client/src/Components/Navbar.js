@@ -60,38 +60,18 @@ export class Navbar extends React.Component {
         Auth.deauthenticateUser();
 
         this.props.toggleAuthenticateStatus();
-        
-        this.props.history.push('/');
-    }
 
-    handleSignup= (event) => {
-
-        event.preventDefault();
-
-        axios.post('/signup', {
-            email: this.state.email,
-            password: this.state.password
-        })
+        axios.get('/signout')
             .then(response => {
+
+                console.log("Response: ");
                 console.log(response)
-
-                if (response.data.user.message){
-                    this.setState({errors:response.data.user.message});
-
-                }else {
-
-                    console.log('sucessfull sign up');
-
-                    Auth.authenticateUser(response.data.token, response.data.user);
-
-                    this.props.toggleAuthenticateStatus(response.data.user);
-
-
-                }
+                this.props.history.push(response.data.redirectUrl);
             }).catch(error => {
-                console.log('Sign up server error');
+                console.log('Sign in server error');
                 console.log(error);
             })
+        
     }
 
 
@@ -112,17 +92,17 @@ export class Navbar extends React.Component {
                         </ul>
 
                         {this.props.isAuth ? (
-                            <ul className="navbar-nav">
+                            <ul className="navbar-nav text-center">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      {JSON.parse(localStorage.getItem('token')).user.first_name} {JSON.parse(localStorage.getItem('token')).user.last_name} 
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                        <Link className="dropdown-item" to="/dashboard">Post a Job</Link>
                                         <Link className="dropdown-item" to="/profile">Profile</Link>
                                     </div>
                                 </div>
-                                <li className="nav-item">
+                                <li className="nav-item" style={{marginTop: "5px"}}>
                                     <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
                                 </li>
                             </ul>

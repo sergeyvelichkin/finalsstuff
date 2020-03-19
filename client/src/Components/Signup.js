@@ -14,19 +14,17 @@ export class Signup extends Component {
 
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
-    handleChange(evt) {
+    handleChange =  (evt) => {
         // check it out: we get the evt.target.name (which will be either "email" or "password")
         // and use it to target the key on our `state` object with the same name, using bracket syntax
         this.setState({ [evt.target.name]: evt.target.value });
 
       }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
 
         event.preventDefault();
 
@@ -49,6 +47,8 @@ export class Signup extends Component {
                     this.setState({ successMessage: response.data.user.message });
                 } else {
                     this.setState({ successMessage: "User created, try to logIn" });
+                    this.props.history.push(response.data.redirectUrl);
+
                 }
             }).catch(error => {
                 console.log('Sign Up error');

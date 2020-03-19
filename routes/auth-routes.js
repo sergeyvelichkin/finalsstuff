@@ -45,8 +45,20 @@ module.exports = (app, passport) => {
             success: true,
             message: 'You have successfully signed up! Now you should be able to log in.',
             token,
-            user:userData
+            user:userData,
+            redirectUrl: '/'
           });
         })(req, res, next);
+      });
+
+      app.get('/signout', function(req, res){
+          res.clearCookie('connect.sid');
+        
+          return res.status(200).json({
+            success:true,
+            redirectUrl: '/'
+        })
+       
+
       });
 }

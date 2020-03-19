@@ -27,7 +27,7 @@ module.exports = function(app) {
 
   app.get("/api/jobs/city/:city?", function(req, res) {
     // 1. Add a join to include all of each Job's Posts
-    console.log(req.isAuthenticated())
+    console.log(req)
     if (req.params.city){
       db.Job.findAll({
         where: {
