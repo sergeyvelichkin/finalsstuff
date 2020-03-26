@@ -4,9 +4,10 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
+const path = require('path')
 var cookieParser = require('cookie-parser');
 var flash    = require('connect-flash');
-// const path = require('path')
+
 
 
 
@@ -29,6 +30,8 @@ app.use(session({ secret: 'trevlazyasshole', resave: false, saveUninitialized: f
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); 
+
+
 
 
 // Requiring our models for syncing

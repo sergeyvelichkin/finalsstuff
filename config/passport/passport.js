@@ -9,6 +9,7 @@ let LocalStrategy = require('passport-local').Strategy;
 module.exports = (passport,user) => {
     let User=user;
     console.log("Before serialize " + user)
+    
     passport.serializeUser(function (user, done) {
             console.log("In serialize " + user)
         done(null, user.id);
@@ -61,7 +62,8 @@ module.exports = (passport,user) => {
                 if (user) {
 
                     return done(null, false, {
-                        message: 'That email is already taken'
+                        message: 'That email is already taken',
+                        success: false
                     });
 
                 } else {
@@ -84,7 +86,7 @@ module.exports = (passport,user) => {
                     User.create(data).then((newUser) => {
 
                         if (!newUser) {
-
+                            
                             return done(null, false);
 
                         }

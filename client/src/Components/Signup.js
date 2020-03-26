@@ -7,6 +7,7 @@ export class Signup extends Component {
         super(props);
         this.state = {
             successMessage: [],
+            failMessage: [],
             firstname: '',
             lastname: '',
             email: '',
@@ -27,7 +28,8 @@ export class Signup extends Component {
     handleSubmit = (event) => {
 
         event.preventDefault();
-
+        this.setState({ successMessage: "",
+                        failMessage:""});
         console.log("Send to server:")
         console.log(this.state);
 
@@ -43,14 +45,20 @@ export class Signup extends Component {
                 console.log("Response: ");
                 console.log(response)
 
-                if (response.data.user.message) {
-                    this.setState({ successMessage: response.data.user.message });
+                if (!response.data.success && response.data.message) {
+                    this.setState({ failMessage: response.data.message });
                 } else {
-                    this.setState({ successMessage: "User created, try to logIn" });
-                    this.props.history.push(response.data.redirectUrl);
+                    this.setState({ successMessage: response.data.message });
+                    setTimeout(() => {
+                        this.props.history.push(response.data.redirectUrl);
+                    }, 2000);
+                    
 
                 }
-            }).catch(error => {
+                
+            })
+            .catch(error => {
+                
                 console.log('Sign Up error');
                 console.log(error);
             })
@@ -110,7 +118,15 @@ export class Signup extends Component {
                                         {this.state.successMessage}
                                     </div>
                                     
+                            } 
+
+                            {this.state.failMessage.length > 0 &&
+                                    <div className="alert alert-danger my-1" role="alert">
+                                        {this.state.failMessage}
+                                    </div>
+                                    
                             }
+                            
                             <hr className="mb-4" />
                             <button className="btn btn-primary btn-lg btn-block" type="submit" value="Submit">Sign Up</button>
                         </form>

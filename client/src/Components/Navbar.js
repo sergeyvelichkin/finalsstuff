@@ -76,6 +76,7 @@ export class Navbar extends React.Component {
 
 
 
+
     render() {
         return (
             <header>
@@ -85,14 +86,10 @@ export class Navbar extends React.Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to='/'>Home</Link>
-                            </li>
-                        </ul>
-
+                    
+                        
                         {this.props.isAuth ? (
-                            <ul className="navbar-nav text-center">
+                            <ul className="nav navbar-nav flex-row justify-content-between ml-auto ">
                                 <div className="dropdown mr-1">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      {JSON.parse(localStorage.getItem('token')).user.first_name} {JSON.parse(localStorage.getItem('token')).user.last_name} 
@@ -102,14 +99,14 @@ export class Navbar extends React.Component {
                                         <Link className="dropdown-item" to="/profile">Profile</Link>
                                     </div>
                                 </div>
-                                <li className="nav-item" style={{marginTop: "5px"}}>
+                                <li className="nav-item">
                                     <button type="submit" value="Submit" onClick={this.handleSignOut} className="btn btn-primary btn-block">Logout</button>
                                 </li>
                             </ul>
 
                         ) : (
 
-                                <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
+                                <ul className="nav navbar-nav flex-row justify-content-between ml-auto ">
                                     <li className="dropdown">
                                         <button type="button" id="dropdownMenu1" data-toggle="dropdown" className="btn btn-outline-secondary dropdown-toggle">Login <span className="caret"></span></button>
                                         <ul className="dropdown-menu dropdown-menu-right mt-2">
@@ -139,6 +136,8 @@ export class Navbar extends React.Component {
                                     </li>
                                 </ul>
                             )}
+
+                        
                     </div>
 
                 </nav>
